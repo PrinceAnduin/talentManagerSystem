@@ -51,6 +51,13 @@ public interface UserMapper {
 	 * @param companyId
 	 * @return
 	 */
+	
+	/**
+	 * 设置用户工作
+	 * @param id
+	 */
+	void setJob(int userId, int jobId);
+	
 	List<Integer> findPageByCompany(int companyId);
 	
 	List<String> getSearchHistory(int userId);

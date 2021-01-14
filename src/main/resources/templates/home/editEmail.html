@@ -9,7 +9,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>Dashboard Template for Bootstrap</title>
+<title>DG HOME</title>
 <!-- Bootstrap core CSS -->
 <link href="asserts/css/bootstrap.min.css"
 	th:href="@{/asserts/css/bootstrap.min.css}"
@@ -115,8 +115,11 @@
                                     <li class="nav-item" th:if="${loginUser.company == null}">
                                         <a href="/jobs">求职</a>
                                     </li>
-                                    <li class="nav-item" th:if="${loginUser.company != null}">
-                                        <a href="/companyManage">我的公司</a>
+                                    <li class="nav-item" th:if="${loginUser.company != null && loginUser.isAdmin}">
+                                        <a href="/companyManage">管理公司</a>
+                                    </li>
+                                    <li class="nav-item" th:if="${loginUser.company != null && !loginUser.isAdmin}">
+                                        <a href="/myCompany">我的公司</a>
                                     </li>
                                     <li class="nav-item" th:if="${loginUser.company == null}">
                                         <a href="/companyManage/signCompany">注册公司</a>

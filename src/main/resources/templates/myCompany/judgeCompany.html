@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    <title>评价公司</title>
+    <link rel="stylesheet" href="asserts/css/bootstrap.min.css" th:href="@{/asserts/css/bootstrap.min.css}">
+    <link rel="stylesheet" href="asserts/css/star.min.css" th:href="@{/asserts/css/star.min.css}" media="all" type="text/css" />
+    <script src="assets-homepage/js/vendor/jquery-1.12.4.min.js" th:src="@{/asserts/js/vendor/jquery-1.12.4.min.js}"></script>
+    <link href="assets/css/nav1.1.css" th:href="@{/asserts/css/nav1.1.css}" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+
+    <body>
+        <nav class="header-area">
+            <div class="navbar-area">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <nav class="navbar navbar-expand-lg">
+                                <a class="navbar-brand" href="#">
+                                	<img th:src="@{/asserts/img/logo-bar.svg}" alt="Logo" width="80px">
+                            	</a>
+                                <button class="navbar-toggler" type="button" data-toggle="collapse"
+                                    data-target="#navbarEight" aria-controls="navbarEight" aria-expanded="false"
+                                    aria-label="Toggle navigation">
+                                    <span class="toggler-icon"></span>
+                                    <span class="toggler-icon"></span>
+                                    <span class="toggler-icon"></span>
+                                </button>
+                                <div class="collapse navbar-collapse sub-menu-bar" id="navbarEight">
+                                                                    <ul class="navbar-nav ml-auto">
+                                    <li class="nav-item">
+                                        <a href="/home/logout">首页</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="/home">我的</a>
+                                    </li>
+                                    <li th:if="${loginUser.isHR || loginUser.isAdmin}" class="nav-item">
+                                        <a href="/recruit/addJob">发布招聘信息</a>
+                                    </li>
+                                    <li th:if="${loginUser.isHR || loginUser.isAdmin}" class="nav-item">
+                                        <a href="/recruit/checkUsers">甄选</a>
+                                    </li>
+                                    <li class="nav-item" th:if="${loginUser.company == null}">
+                                        <a href="/jobs">求职</a>
+                                    </li>
+                                    
+                                    <li class="nav-item" th:if="${loginUser.company != null && loginUser.isAdmin}">
+                                        <a href="/companyManage">管理公司</a>
+                                    </li>
+                                    <li class="nav-item active" th:if="${loginUser.company != null && !loginUser.isAdmin}">
+                                        <a href="/myCompany">我的公司</a>
+                                    </li>
+                                    
+                                    <li class="nav-item" th:if="${loginUser.company == null}">
+                                        <a href="/companyManage/signCompany">注册公司</a>
+                                    </li>
+                                </ul>
+                                </div>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <div class="page-header">
+            <h2>企业评价</h2>
+        </div>
+        <div class="container">
+
+
+
+            <form>
+                <div class="boxscore">
+                    <div class="s2"><span class="s1">评价指标</span><span class="s1" style="float: right; margin-right: 80px">评价指标</span></div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">企业口碑:</div>
+                        <div class="panel-body">
+                            <input name="starNum" id="starNum1" type="hidden" />
+                            <div class="starability-container">
+                                <fieldset class="starability-slot">
+                                    <input type="radio" id="rate_1_0_1_5" name="starLevela" value="5" />
+                                    <label for="rate_1_0_1_5" title="5星"></label>
+                                    <input type="radio" id="rate_1_0_1_4" name="starLevela" value="4" />
+                                    <label for="rate_1_0_1_4" title="4星"></label>
+                                    <input type="radio" id="rate_1_0_1_3" name="starLevela" value="3" />
+                                    <label for="rate_1_0_1_3" title="3星"></label>
+                                    <input type="radio" id="rate_1_0_1_2" name="starLevela" value="2" />
+                                    <label for="rate_1_0_1_2" title="2星"></label>
+                                    <input type="radio" id="rate_1_0_1_1" name="starLevela" value="1" />
+                                    <label for="rate_1_0_1_1" title="1星"></label>
+                                </fieldset>
+                            </div>
+                            <span style="font-size: 8px;line-height: 2.9rem;padding: 1rem;font-style: oblique;"
+                                id="starStr1"></span>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">企业综合竞争力:</div>
+                        <div class="panel-body">
+                            <input name="starNum" id="starNum2" type="hidden" />
+                            <div class="starability-container">
+                                <fieldset class="starability-slot">
+                                    <input type="radio" id="rate_1_0_1_6" name="starLevelb" value="5" />
+                                    <label for="rate_1_0_1_6" title="5星"></label>
+                                    <input type="radio" id="rate_1_0_1_7" name="starLevelb" value="4" />
+                                    <label for="rate_1_0_1_7" title="4星"></label>
+                                    <input type="radio" id="rate_1_0_1_8" name="starLevelb" value="3" />
+                                    <label for="rate_1_0_1_8" title="3星"></label>
+                                    <input type="radio" id="rate_1_0_1_9" name="starLevelb" value="2" />
+                                    <label for="rate_1_0_1_9" title="2星"></label>
+                                    <input type="radio" id="rate_1_0_1_10" name="starLevelb" value="1" />
+                                    <label for="rate_1_0_1_10" title="1星"></label>
+                                </fieldset>
+                            </div>
+                            <span style="font-size: 8px;line-height: 2.9rem;padding: 1rem;font-style: oblique;"
+                                id="starStr2"></span>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">企业潜在发展:</div>
+                        <div class="panel-body">
+                            <input name="starNum" id="starNum3" type="hidden" />
+                            <div class="starability-container">
+                                <fieldset class="starability-slot">
+                                    <input type="radio" id="rate_1_0_11" name="starLevelc" value="5" />
+                                    <label for="rate_1_0_11" title="5星"></label>
+                                    <input type="radio" id="rate_1_0_12" name="starLevelc" value="4" />
+                                    <label for="rate_1_0_12" title="4星"></label>
+                                    <input type="radio" id="rate_1_0_13" name="starLevelc" value="3" />
+                                    <label for="rate_1_0_13" title="3星"></label>
+                                    <input type="radio" id="rate_1_0_14" name="starLevelc" value="2" />
+                                    <label for="rate_1_0_14" title="2星"></label>
+                                    <input type="radio" id="rate_1_0_15" name="starLevelc" value="1" />
+                                    <label for="rate_1_0_15" title="1星"></label>
+                                </fieldset>
+                            </div>
+                            <span style="font-size: 8px;line-height: 2.9rem;padding: 1rem;font-style: oblique;"
+                                id="starStr3"></span>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">企业效益: </div>
+                        <div class="panel-body">
+                            <input name="starNum" id="starNum4" type="hidden" />
+                            <div class="starability-container">
+                                <fieldset class="starability-slot">
+                                    <input type="radio" id="rate_1_0_16" name="starLeveld" value="5" />
+                                    <label for="rate_1_0_16" title="5星"></label>
+                                    <input type="radio" id="rate_1_0_17" name="starLeveld" value="4" />
+                                    <label for="rate_1_0_17" title="4星"></label>
+                                    <input type="radio" id="rate_1_0_18" name="starLeveld" value="3" />
+                                    <label for="rate_1_0_18" title="3星"></label>
+                                    <input type="radio" id="rate_1_0_19" name="starLeveld" value="2" />
+                                    <label for="rate_1_0_19" title="2星"></label>
+                                    <input type="radio" id="rate_1_0_20" name="starLeveld" value="1" />
+                                    <label for="rate_1_0_20" title="1星"></label>
+                                </fieldset>
+                            </div>
+                            <span style="font-size: 8px;line-height: 2.9rem;padding: 1rem;font-style: oblique;"
+                                id="starStr4"></span>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">企业待遇:</div>
+                        <div class="panel-body">
+                            <input name="starNum" id="starNum5" type="hidden" />
+                            <div class="starability-container">
+                                <fieldset class="starability-slot">
+                                    <input type="radio" id="rate_1_0_21" name="starLevele" value="5" />
+                                    <label for="rate_1_0_21" title="5星"></label>
+                                    <input type="radio" id="rate_1_0_22" name="starLevele" value="4" />
+                                    <label for="rate_1_0_22" title="4星"></label>
+                                    <input type="radio" id="rate_1_0_23" name="starLevele" value="3" />
+                                    <label for="rate_1_0_23" title="3星"></label>
+                                    <input type="radio" id="rate_1_0_24" name="starLevele" value="2" />
+                                    <label for="rate_1_0_24" title="2星"></label>
+                                    <input type="radio" id="rate_1_0_25" name="starLevele" value="1" />
+                                    <label for="rate_1_0_25" title="1星"></label>
+                                </fieldset>
+                            </div>
+                            <span style="font-size: 8px;line-height: 2.9rem;padding: 1rem;font-style: oblique;"
+                                id="starStr5"></span>
+                        </div>
+                    </div>
+                </div>
+                <div id="chart-wrapper">
+                    <canvas id="canvas"></canvas>
+                </div>
+                <script src="https://cdn.bootcss.com/Chart.js/2.4.0/Chart.min.js"></script>
+                <script th:inline="javascript">
+                    //Get the context of the canvas element we want to select
+                    var ctx = document.getElementById('canvas').getContext('2d');
+                    var name = [[${judgedUser.name}]];
+                    
+                    ctx.font = "40pt Calibri";
+                    var canvas = document.getElementById("canvas");
+
+                    var number1 = document.getElementById('starNum1').value;
+                    var number2 = document.getElementById('starNum2').value;
+                    var number3 = document.getElementById('starNum3').value;
+                    var number4 = document.getElementById('starNum4').value;
+                    var number5 = document.getElementById('starNum5').value;
+                    
+                    if ([[${judgement}]] != null){
+                    	var oldjudgement = [[${judgement}]];
+                    	number1 = Math.floor(oldjudgement / 10000);
+                    	number2 = Math.floor((oldjudgement%10000) / 1000);
+                    	number3 = Math.floor((oldjudgement%1000) / 100);
+                    	number4 = Math.floor((oldjudgement%100) / 10);
+                    	number5 = Math.floor((oldjudgement%10) / 1);
+                    	
+                    	console.log(number1);
+                    	
+                    	document.getElementById('starNum1').value = number1;
+                    	document.getElementById('starNum2').value = number2;
+                    	document.getElementById('starNum3').value = number3;
+                    	document.getElementById('starNum4').value = number4;
+                    	document.getElementById('starNum5').value = number5;
+                    	
+                    	var i;
+                    	for (i = 1; i <=5; i ++){
+                            var starNum = document.getElementById('starNum' + i).value
+                            if (starNum == 1) $("#starStr"+i).text("差");
+                            if (starNum == 2) $("#starStr"+i).text("一般");
+                            if (starNum == 3) $("#starStr"+i).text("优");
+                            if (starNum == 4) $("#starStr"+i).text("良");
+                            if (starNum == 5) $("#starStr"+i).text("满意");
+                    	}
+                    	
+                        
+                    }
+                    
+                    var myRadarChart = new Chart(ctx, {
+                        "type": "radar",
+                        "data": {
+                            "labels": [
+                                "企业综合竞争力",
+                                "企业待遇",
+                                "企业口碑",
+                                "企业潜在发展",
+                                "企业效益",
+                            ],
+                            "datasets": [{
+                                "label": name,
+                                "data": [number1 * 20, number2 * 20, number3 * 20, number4 * 20 , number5 * 20],
+                                "fill": true,
+                                "backgroundColor": "rgba(255, 99, 132, 0.2)",
+                                "borderColor": "rgb(255, 99, 132)",
+                                "pointBackgroundColor": "rgb(255, 99, 132)",
+                                "pointBorderColor": "#fff",
+                                "pointHoverBackgroundColor": "#fff",
+                                "pointHoverBorderColor": "rgb(255, 99, 132)",
+                                "fill": true
+                            }]
+                        },
+                        options: {
+                            scale: {
+                                ticks: {
+                                    //最小刻度 最大刻度 刻度的步长(长度)
+                                    suggestedMin: 0,
+                                    suggestedMax: 100,
+                                    stepSize: 20,
+                                }
+                                // labels: {
+                                //     fontsize: 20
+
+                                // }
+                            },
+                            legend: {
+                                labels: {
+                                    // This more specific font property overrides the global property
+                                    fontSize: 30
+                                }
+                            },
+                            pointLabels: {
+                                fontSize: 13//x轴文字
+                            }
+                        }
+                    });
+                </script>
+                <!-- <div class="page-header">
+                    <h3>备注：</h3>
+                </div>
+                <textarea id="customerEvaluationComment" name="customerEvaluationComment"
+                    class="form-control"></textarea>
+
+                <br />
+-->
+            </form>
+        </div>
+        
+        
+                <div class="submit_btn" style=" margin-top: 25%">
+                    <button type="button" class="btn btn-primary btn-lg btn-block" style="height: 40px; width: 40%; font-size: 18px;" onclick="evaluation();">
+                        　　　　　　　提交　　　　　　　　
+                    </button>
+                    <button type="button" class="btn btn-default btn-lg btn-block" style="height: 40px; width: 40%; font-size: 18px" onclick="closed();">
+                        　　　　　　　关闭　　　　　　　　
+                    </button>
+                </div> 
+                
+    </body>
+
+
+    <script th:inline="javascript">
+        $('[name="starLevela"]').bind("click", function () {
+            console.log($(this)[0].value)
+            $("#starNum1").val($(this)[0].value)
+            var starNum = $(this)[0].value;
+            if (starNum == 1) $("#starStr1").text("差");
+            if (starNum == 2) $("#starStr1").text("一般");
+            if (starNum == 3) $("#starStr1").text("优");
+            if (starNum == 4) $("#starStr1").text("良");
+            if (starNum == 5) $("#starStr1").text("满意");
+            var number1 = document.getElementById('starNum1').value;
+            var number2 = document.getElementById('starNum2').value;
+            var number3 = document.getElementById('starNum3').value;
+            var number4 = document.getElementById('starNum4').value;
+            var number5 = document.getElementById('starNum5').value;
+
+            var ctx = document.getElementById('canvas').getContext('2d');
+			var name = [[${judgedUser.name}]];
+            ctx.font = "40pt Calibri";
+            var canvas = document.getElementById("canvas");
+            var myRadarChart = new Chart(ctx, {
+            "type": "radar",
+            "data": {
+            "labels": [
+                "企业综合竞争力",
+                "企业待遇",
+                "企业口碑",
+                "企业潜在发展",
+                "企业效益",
+            ],
+            "datasets": [{
+                "label": name,
+                "data": [starNum * 20, number2 * 20, number3 * 20, number4 * 20, number5 * 20],
+                "fill": true,
+                "backgroundColor": "rgba(255, 99, 132, 0.2)",
+                "borderColor": "rgb(255, 99, 132)",
+                "pointBackgroundColor": "rgb(255, 99, 132)",
+                "pointBorderColor": "#fff",
+                "pointHoverBackgroundColor": "#fff",
+                "pointHoverBorderColor": "rgb(255, 99, 132)",
+                "fill": true
+            }]
+    },
+    options: {
+        scale: {
+            ticks: {
+                //最小刻度 最大刻度 刻度的步长(长度)
+                suggestedMin: 0,
+                suggestedMax: 100,
+                stepSize: 20,
+            }
+            // labels: {
+            //     fontsize: 20
+
+            // }
+        },
+        legend: {
+            labels: {
+                // This more specific font property overrides the global property
+                fontSize: 30
+            }
+        },
+        pointLabels: {
+            fontSize: 13//x轴文字
+        }
+    }
+});
+        })
+        $('[name="starLevelb"]').bind("click", function () {
+            console.log($(this)[0].value)
+            $("#starNum2").val($(this)[0].value)
+            var starNum = $(this)[0].value;
+            if (starNum == 1) $("#starStr2").text("差");
+            if (starNum == 2) $("#starStr2").text("一般");
+            if (starNum == 3) $("#starStr2").text("优");
+            if (starNum == 4) $("#starStr2").text("良");
+            if (starNum == 5) $("#starStr2").text("满意");
+
+            var number1 = document.getElementById('starNum1').value;
+            var number2 = document.getElementById('starNum2').value;
+            var number3 = document.getElementById('starNum3').value;
+            var number4 = document.getElementById('starNum4').value;
+            var number5 = document.getElementById('starNum5').value;
+
+            var ctx = document.getElementById('canvas').getContext('2d');
+            var name = [[${judgedUser.name}]];
+            ctx.font = "40pt Calibri";
+            var canvas = document.getElementById("canvas");
+            var myRadarChart = new Chart(ctx, {
+            "type": "radar",
+            "data": {
+            "labels": [
+                "企业综合竞争力",
+                "企业待遇",
+                "企业口碑",
+                "企业潜在发展",
+                "企业效益",
+            ],
+            "datasets": [{
+                "label": name,
+                "data": [number1 * 20, starNum * 20, number3 * 20, number4 * 20, number5 * 20],
+                "fill": true,
+                "backgroundColor": "rgba(255, 99, 132, 0.2)",
+                "borderColor": "rgb(255, 99, 132)",
+                "pointBackgroundColor": "rgb(255, 99, 132)",
+                "pointBorderColor": "#fff",
+                "pointHoverBackgroundColor": "#fff",
+                "pointHoverBorderColor": "rgb(255, 99, 132)",
+                "fill": true
+            }]
+    },
+    options: {
+        scale: {
+            ticks: {
+                //最小刻度 最大刻度 刻度的步长(长度)
+                suggestedMin: 0,
+                suggestedMax: 100,
+                stepSize: 20,
+            }
+            // labels: {
+            //     fontsize: 20
+
+            // }
+        },
+        legend: {
+            labels: {
+                // This more specific font property overrides the global property
+                fontSize: 30
+            }
+        },
+        pointLabels: {
+            fontSize: 13//x轴文字
+        }
+    }
+});
+        })
+        $('[name="starLevelc"]').bind("click", function () {
+            console.log($(this)[0].value)
+            $("#starNum3").val($(this)[0].value)
+            var starNum = $(this)[0].value;
+            if (starNum == 1) $("#starStr3").text("差");
+            if (starNum == 2) $("#starStr3").text("一般");
+            if (starNum == 3) $("#starStr3").text("优");
+            if (starNum == 4) $("#starStr3").text("良");
+            if (starNum == 5) $("#starStr3").text("满意");
+            
+            var number1 = document.getElementById('starNum1').value;
+            var number2 = document.getElementById('starNum2').value;
+            var number3 = document.getElementById('starNum3').value;
+            var number4 = document.getElementById('starNum4').value;
+            var number5 = document.getElementById('starNum5').value;
+
+            var ctx = document.getElementById('canvas').getContext('2d');
+            var name = [[${judgedUser.name}]];
+            ctx.font = "40pt Calibri";
+            var canvas = document.getElementById("canvas");
+            var myRadarChart = new Chart(ctx, {
+            "type": "radar",
+            "data": {
+            "labels": [
+                "企业综合竞争力",
+                "企业待遇",
+                "企业口碑",
+                "企业潜在发展",
+                "企业效益",
+            ],
+            "datasets": [{
+                "label": name,
+                "data": [number1 * 20, number2 * 20, number3 * 20, number4 * 20, number5 * 20],
+                "fill": true,
+                "backgroundColor": "rgba(255, 99, 132, 0.2)",
+                "borderColor": "rgb(255, 99, 132)",
+                "pointBackgroundColor": "rgb(255, 99, 132)",
+                "pointBorderColor": "#fff",
+                "pointHoverBackgroundColor": "#fff",
+                "pointHoverBorderColor": "rgb(255, 99, 132)",
+                "fill": true
+            }]
+    },
+    options: {
+        scale: {
+            ticks: {
+                //最小刻度 最大刻度 刻度的步长(长度)
+                suggestedMin: 0,
+                suggestedMax: 100,
+                stepSize: 20,
+            }
+            // labels: {
+            //     fontsize: 20
+
+            // }
+        },
+        legend: {
+            labels: {
+                // This more specific font property overrides the global property
+                fontSize: 30
+            }
+        },
+        pointLabels: {
+            fontSize: 13//x轴文字
+        }
+    }
+});
+        })
+        $('[name="starLeveld"]').bind("click", function () {
+            console.log($(this)[0].value)
+            $("#starNum4").val($(this)[0].value)
+            var starNum = $(this)[0].value;
+            if (starNum == 1) $("#starStr4").text("差");
+            if (starNum == 2) $("#starStr4").text("一般");
+            if (starNum == 3) $("#starStr4").text("优");
+            if (starNum == 4) $("#starStr4").text("良");
+            if (starNum == 5) $("#starStr4").text("满意");
+            
+            var number1 = document.getElementById('starNum1').value;
+            var number2 = document.getElementById('starNum2').value;
+            var number3 = document.getElementById('starNum3').value;
+            var number4 = document.getElementById('starNum4').value;
+            var number5 = document.getElementById('starNum5').value;
+
+            var ctx = document.getElementById('canvas').getContext('2d');
+            var name = [[${judgedUser.name}]];
+            ctx.font = "40pt Calibri";
+            var canvas = document.getElementById("canvas");
+            var myRadarChart = new Chart(ctx, {
+            "type": "radar",
+            "data": {
+            "labels": [
+                "企业综合竞争力",
+                "企业待遇",
+                "企业口碑",
+                "企业潜在发展",
+                "企业效益",
+            ],
+            "datasets": [{
+                "label": name,
+                "data": [number1 * 20, number2 * 20, number3 * 20, number4 * 20, number5 * 20],
+                "fill": true,
+                "backgroundColor": "rgba(255, 99, 132, 0.2)",
+                "borderColor": "rgb(255, 99, 132)",
+                "pointBackgroundColor": "rgb(255, 99, 132)",
+                "pointBorderColor": "#fff",
+                "pointHoverBackgroundColor": "#fff",
+                "pointHoverBorderColor": "rgb(255, 99, 132)",
+                "fill": true
+            }]
+    },
+    options: {
+        scale: {
+            ticks: {
+                //最小刻度 最大刻度 刻度的步长(长度)
+                suggestedMin: 0,
+                suggestedMax: 100,
+                stepSize: 20,
+            }
+            // labels: {
+            //     fontsize: 20
+
+            // }
+        },
+        legend: {
+            labels: {
+                // This more specific font property overrides the global property
+                fontSize: 30
+            }
+        },
+        pointLabels: {
+            fontSize: 13//x轴文字
+        }
+    }
+});
+        })
+        $('[name="starLevele"]').bind("click", function () {
+            console.log($(this)[0].value)
+            $("#starNum5").val($(this)[0].value)
+            var starNum = $(this)[0].value;
+            if (starNum == 1) $("#starStr5").text("差");
+            if (starNum == 2) $("#starStr5").text("一般");
+            if (starNum == 3) $("#starStr5").text("优");
+            if (starNum == 4) $("#starStr5").text("良");
+            if (starNum == 5) $("#starStr5").text("满意");
+
+            var number1 = document.getElementById('starNum1').value;
+            var number2 = document.getElementById('starNum2').value;
+            var number3 = document.getElementById('starNum3').value;
+            var number4 = document.getElementById('starNum4').value;
+            var number5 = document.getElementById('starNum5').value;
+
+            var ctx = document.getElementById('canvas').getContext('2d');
+            var name = [[${judgedUser.name}]];
+            ctx.font = "40pt Calibri";
+            var canvas = document.getElementById("canvas");
+            var myRadarChart = new Chart(ctx, {
+            "type": "radar",
+            "data": {
+            "labels": [
+                "企业综合竞争力",
+                "企业待遇",
+                "企业口碑",
+                "企业潜在发展",
+                "企业效益",
+            ],
+            "datasets": [{
+                "label": name,
+                "data": [number1 * 20, number2 * 20, number3 * 20, number4 * 20, number5 * 20],
+                "fill": true,
+                "backgroundColor": "rgba(255, 99, 132, 0.2)",
+                "borderColor": "rgb(255, 99, 132)",
+                "pointBackgroundColor": "rgb(255, 99, 132)",
+                "pointBorderColor": "#fff",
+                "pointHoverBackgroundColor": "#fff",
+                "pointHoverBorderColor": "rgb(255, 99, 132)",
+                "fill": true
+            }]
+    },
+    options: {
+        scale: {
+            ticks: {
+                //最小刻度 最大刻度 刻度的步长(长度)
+                suggestedMin: 0,
+                suggestedMax: 100,
+                stepSize: 20,
+            }
+            // labels: {
+            //     fontsize: 20
+
+            // }
+        },
+        legend: {
+            labels: {
+                // This more specific font property overrides the global property
+                fontSize: 30
+            }
+        },
+        pointLabels: {
+            fontSize: 13//x轴文字
+        }
+    }
+});
+        })
+
+
+
+
+        // 提交评论
+        function evaluation() {
+            //评价等级
+
+            var customerEvaluationLevel = $('#starNum1').val() + $('#starNum2').val()  + $('#starNum3').val() + $('#starNum4').val() + $('#starNum5').val();
+
+            if (customerEvaluationLevel == undefined || customerEvaluationLevel == null || customerEvaluationLevel == '') {
+                alert('请将满意度选好再提交哦！');
+                return false;
+            }
+            
+            var href = "/myCompany/submitCompanyJudge?judgement="+customerEvaluationLevel;
+            window.location.href=href;
+        }
+
+        //关闭
+        function closed() {
+        	window.location.href="/companyManage";
+        }
+
+
+    </script>
+
+
+
+    <style>
+        .page-header {
+            padding-bottom: 1px !important;
+            margin: 0 auto;
+            margin-top: 150px;
+            width: 400px;
+            border-radius: 5px;
+            color: rgba(74, 164, 193);
+            text-align: center;
+
+        }
+
+        .page-header h2 {
+            font-size: 30px;
+        }
+
+        .submit_btn {
+            width: 100%;
+        }
+
+        .textarea.form-control {
+            height: 28rem !important;
+        }
+
+        h3 {
+            font-size: 22px;
+        }
+
+        h2 {
+            font-size: 19px;
+        }
+    </style>
+
+</html>
+
+</html>

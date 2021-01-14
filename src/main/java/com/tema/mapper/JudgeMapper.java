@@ -19,9 +19,9 @@ public interface JudgeMapper {
 	
 	void insertCompanyJudge(Judge judge);
 	
-	void updateUserJudge(int id);
+	void updateUserJudge(Judge judge);
 	
-	void updateCompanyJudge(int id);
+	void updateCompanyJudge(Judge judge);
 	
 	List<Judge> getUserJudges(int companyId, int start, int rows);
 	

@@ -8,6 +8,6 @@ public class Judge {
 	private int id;
 	private User user;
 	private Company company;
-	private Date juedgeDate;
+	private Date judgeDate;
 	private int judgement;
 }

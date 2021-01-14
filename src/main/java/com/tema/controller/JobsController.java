@@ -61,7 +61,7 @@ public class JobsController {
 	public String visitHome(HttpSession session, Model model) {
 		//从数据库取出用户
 		if (session.getAttribute("loginUser") == null) {
-			return "redirect:login";
+			return "redirect:/login";
 		}
 		user = (User) session.getAttribute("loginUser");
 		model.addAttribute("loginUser", user);
@@ -71,6 +71,7 @@ public class JobsController {
 		return "redirect:/jobs/findJobs";
 	}
 	
+	//智能推荐
 	@RequestMapping(value = "/recommend", method = GET)
 	public String visitRecommend(HttpSession session, Model model,
 			@RequestParam(value = "pageNo", defaultValue = "0") int pageNo,

@@ -114,7 +114,7 @@ public class RecruitController {
 		}else if (choice == 1){
 			requests = jobRequestMapper.findReceviePageByAcctance(user.getCompany().getId(), 0, 100);
 		}else {
-			requests = jobRequestMapper.findReceviePageByAcctance(user.getCompany().getId(), 0, 100);
+			requests = jobRequestMapper.findReceviePageByFinalAcctance(user.getCompany().getId(), 0, 100);
 		}
 		model.addAttribute("requests", requests);
 		return "recruit/checkUsers";
@@ -148,9 +148,12 @@ public class RecruitController {
 		//更新用户的公司
 		if (companyRelation == null) {
 			userMapper.addCompany(userId, user.getCompany().getId());
+			
 		}else {
 			userMapper.setCompany(userId, user.getCompany().getId());
 		}
+		//更新用户职位
+		userMapper.setJob(userId, jobRequestMapper.getJobId(id));
 		//同时将用户其他所有申请全部设为无效
 		jobRequestMapper.setAllDelete(id);
 		return "redirect:/recruit/checkUsers";

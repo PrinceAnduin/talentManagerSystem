@@ -104,6 +104,13 @@
        		userId = #{id}
     </update>
     
+    <update id="setJob">
+       INSERT INTO jobRelation(userId, jobId)
+       VALUES(#{userId}, #{jobId})
+       ON conflict(userId)
+       DO UPDATE SET jobId = #{jobId}
+    </update>
+    
     <select id="findPageByCompany" resultType="Integer">
        SELECT 
        users.id

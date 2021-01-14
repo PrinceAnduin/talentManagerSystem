@@ -6,7 +6,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>home3.0</title>
+    <title>DG HOME</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -93,8 +93,11 @@
                                     <li class="nav-item active" th:if="${loginUser.company == null}">
                                         <a href="/jobs">求职</a>
                                     </li>
-                                    <li class="nav-item" th:if="${loginUser.company != null}">
-                                        <a href="/companyManage">我的公司</a>
+                                    <li class="nav-item" th:if="${loginUser.company != null && loginUser.isAdmin}">
+                                        <a href="/companyManage">管理公司</a>
+                                    </li>
+                                    <li class="nav-item" th:if="${loginUser.company != null && !loginUser.isAdmin}">
+                                        <a href="/myCompany">我的公司</a>
                                     </li>
                                     <li class="nav-item" th:if="${loginUser.company == null}">
                                         <a href="/companyManage/signCompany">注册公司</a>
@@ -176,7 +179,8 @@
             </div>
         </div>
     </div>
-
+    
+                            
     <!-- job_listing_area_start  -->
     <div class="job_listing_area plus_padding" style="padding-bottom: 50px; padding-top:50px">
         <div class="container">
@@ -188,14 +192,16 @@
                     <div class="job_lists m-0">
                         <div class="row">
                             <div class=" col-lg-12 col-md-12">
-                            
+                            <div th:if="${recommend != null}" style=" margin-bottom: 2%">
+    							<h4 >以下工作来自智能推荐</h4>
+							</div>
                                 <div th:each="job:${jobs}" class=" size single_jobs white-bg d-flex justify-content-between">
                                     <div class="jobs_left d-flex align-items-center">
                                         <div class="thumb">
                                             <img src="img/svg_icon/1.svg" alt="">
                                         </div>
                                         <div class="jobs_conetent">
-                                            <a href="job_details.html" class="jobname">
+                                            <a href="job_details.html" th:href="@{/jobs/detial/}+${job.id}" class="jobname">
                                                 <h4 th:utext="${job.name}"></h4>
                                             </a>
                                             <div>

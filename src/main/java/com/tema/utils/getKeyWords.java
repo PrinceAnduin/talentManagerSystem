@@ -59,7 +59,7 @@ public class getKeyWords {//加载字典中的所有词汇
         add("web前端开发工程师");add("java软件开发工程师");add("软件项目经理");add("施工员");add("软件开发");add("硬件工程师");add("嵌入式开发工程师");
         add("技术总监");add("售前工程师");add("嵌入式软件开发");
        add("高级软件开发工程师");add("c#");
-        add("前端");add("后端");add("数据库");add("测试");
+        add("前端");add("后端");add("数据库");add("测试");add("HR");add("市场管理");add("游戏开发");add("H5");add("CSS");add("javaScript");add("javascript");
     }};
     /*
         匹配句子中词典中存在的所有词汇

@@ -1,0 +1,69 @@
+
+.companyintroduction{
+    background-color: whitesmoke;
+    margin-left: 250px;
+    margin-right: 250px;
+    margin-top: 150px;
+    font-family: "Microsoft YaHei UI";
+    border-bottom: gray solid 2px;
+}
+
+.employermanage{
+    background-color: whitesmoke;
+    margin-left: 250px;
+    margin-right: 250px;
+    font-family: "Microsoft YaHei UI";
+    border-bottom: gray solid 2px;
+}
+
+.jieshao{
+    padding: 20px;
+    text-indent:50px;
+    color: gray;
+}
+.management{
+    float: left;
+}
+.daohanglan{
+    font-size: 20px;
+    width: 300px;
+    padding: 30px;
+    border-bottom: lightsteelblue solid 1px;
+    font-family: "Microsoft YaHei UI";
+}
+
+.employer{
+    color: #3f3f3f;
+    font-size: 18px;
+}
+
+.pager{
+
+    margin-left: 400px;
+    margin-right: 400px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+
+}
+
+ul.fenye {
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+}
+
+ul.fenye li {display: inline;}
+
+ul.fenye li a {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+}
+
+ul.fenye li a.active {
+    background-color: #A9E2F3;
+    color: white;
+}
+
+ul.fenye li a:hover:not(.active) {background-color: #ddd;}

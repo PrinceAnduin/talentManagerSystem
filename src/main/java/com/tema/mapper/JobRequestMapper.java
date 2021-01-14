@@ -85,6 +85,13 @@ public interface JobRequestMapper {
 	int getCompanyId(int id);
 	
 	/**
+	 * 根据申请id找到职位id
+	 * @param id
+	 * @return
+	 */
+	int getJobId(int id);
+	
+	/**
 	 * 将除本id的其他用户申请id均设为无效
 	 */
 	void setAllDelete(int id);

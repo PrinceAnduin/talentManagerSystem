@@ -16,14 +16,20 @@
         <association property="company" javaType="com.tema.entities.Company">
         	<id column="companyId" property="id" />
         	<result column="company_name" property="name" jdbcType="VARCHAR" />
-        	<result column="company_decription" property="phone" jdbcType="VARCHAR"/>
+        	<result column="company_decription" property="description" jdbcType="VARCHAR"/>
         </association>
     </resultMap>
     
     <sql id="Base_Column_List" >
-        judge.id, judge.userId, judge.companyId, judge.judgement, judgeDate,
+        userJudge.id, userId, companyId, judgement, judgeDate,
         users.name as user_name, users.phone as user_phone, users.gender as user_gender, users.birth as user_birth, users.email as user_email,
-        company.name as company_name, company.decription as company_decription
+        company.name as company_name, company.description as company_decription
+    </sql>
+    
+    <sql id="Base_Column_List2" >
+        companyJudge.id, userId, companyId, judgement, judgeDate,
+        users.name as user_name, users.phone as user_phone, users.gender as user_gender, users.birth as user_birth, users.email as user_email,
+        company.name as company_name, company.description as company_decription
     </sql>
     
     <select id="queryUserJudge" resultMap="BaseResultMap" >
@@ -35,8 +41,8 @@
     
     <select id="queryCompanyJudge" resultMap="BaseResultMap" >
        SELECT 
-       <include refid="Base_Column_List" />
-	   FROM companyJudge
+       <include refid="Base_Column_List2" />
+	   FROM companyJudge, users, company
 	   WHERE userId = #{userId} and companyId = #{companyId} and users.id = userId and company.id = companyId
     </select>
     
@@ -45,7 +51,7 @@
        		userJudge
        		(userId, companyId, judgement, judgeDate) 
        	VALUES
-       		(#{userId}, #{companyId}, #{judgement}, #{judgeDate})
+       		(#{user.id}, #{company.id}, #{judgement}, #{judgeDate})
     </insert>
     
     <insert id="insertCompanyJudge" parameterType="com.tema.entities.Judge" >
@@ -53,7 +59,7 @@
        		companyJudge
        		(userId, companyId, judgement, judgeDate) 
        	VALUES
-       		(#{userId}, #{companyId}, #{judgement}, #{judgeDate})
+       		(#{user.id}, #{company.id}, #{judgement}, #{judgeDate})
     </insert>
     
     <update id="updateUserJudge">
@@ -85,10 +91,10 @@
     
     <select id="getCompanyJudges" resultMap="BaseResultMap" >
        SELECT 
-       <include refid="Base_Column_List" />
-	   FROM userJudge, users, company
+       <include refid="Base_Column_List2" />
+	   FROM companyJudge, users, company
 	   WHERE userId = #{userId} and users.id = userId and company.id = companyId
-	   ORDER BY userJudge.id
+	   ORDER BY companyJudge.id
 	   limit #{rows} offset #{start}
     </select>
 </mapper>

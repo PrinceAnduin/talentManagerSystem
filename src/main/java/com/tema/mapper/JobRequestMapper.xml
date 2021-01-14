@@ -111,6 +111,13 @@
 	   WHERE jobRequest.id = #{id}
     </select>
     
+   <select id="getJobId" resultType="Integer" >
+       SELECT 
+       jobId
+	   FROM jobRequest
+	   WHERE jobRequest.id = #{id}
+    </select>
+    
     <select id="getCompanyId" resultType="Integer" >
        SELECT 
        companyId
