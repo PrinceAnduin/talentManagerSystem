@@ -1,0 +1,299 @@
+<!doctype html>
+<html class="no-js" lang="en"  xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>job_detail</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.png">
+    <!-- CSS here -->
+    <link rel="stylesheet" href="assets/css/LineIcons.css" th:href="@{/asserts/css/LineIcons.css}">
+
+    <link rel="stylesheet" href="assets/css/magnific-popup.css" th:href="@{/asserts/css/magnific-popup.css}">
+
+    <link rel="stylesheet" href="assets/css/slick.css" th:href="@{/asserts/css/slick.css}">
+
+    <link rel="stylesheet" href="assets/css/animate.css" th:href="@{/asserts/css/animate.css}">
+
+    <link rel="stylesheet" href="assets/css/default.css" th:href="@{/asserts/css/default.css}">
+
+    <link rel="stylesheet" href="assets/css/style.css" th:href="@{/asserts/css/style.css}">
+    <link rel="stylesheet" href="./asset-detail/bootstrap.min.css" th:href="@{/asserts/css/bootstrap.min.css}">
+    <link rel="stylesheet" href="./asset-detail/job_detail.css" th:href="@{/asserts/css/job_detail.css}">
+    <link rel="stylesheet" href="./asset-detail/footer.css" th:href="@{/asserts/css/footer.css}">
+    <link rel="stylesheet" href="./asset-detail/nav1.1.css" th:href="@{/asserts/css/nav1.1.css}">
+    <!-- <link rel="stylesheet" href="./assets/css/style.css"> -->
+    <link rel="stylesheet" href="./animate.css" th:href="@{/asserts/css/animate.css}">
+    <link rel="stylesheet" href="./css/slick.css" th:href="@{/asserts/css/slick.css}">
+</head>
+
+<body>
+    <!--[if lte IE 9]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+        <![endif]-->
+    <!-- header-start -->
+    <!-- header-end -->
+    <!-- bradcam_area  -->
+     <nav class="header-area">
+        <div class="navbar-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <nav class="navbar navbar-expand-lg">
+                            <a class="navbar-brand" href="#">
+                                <img src="assets/images/logo.png" th:src="@{/asserts/img/logo-bar.svg}" alt="Logo" width="80px">
+                            </a>
+                            <button class="navbar-toggler" type="button" data-toggle="collapse"
+                                data-target="#navbarEight" aria-controls="navbarEight" aria-expanded="false"
+                                aria-label="Toggle navigation">
+                                <span class="toggler-icon"></span>
+                                <span class="toggler-icon"></span>
+                                <span class="toggler-icon"></span>
+                            </button>
+                            <div class="collapse navbar-collapse sub-menu-bar" id="navbarEight">
+                                <ul class="navbar-nav ml-auto">
+                                    <li class="nav-item">
+                                        <a href="/home/logout">首页</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="/home">我的</a>
+                                    </li>
+                                    <li th:if="${loginUser.isHR || loginUser.isAdmin}" class="nav-item">
+                                        <a href="/recruit/addJob">发布招聘信息</a>
+                                    </li>
+                                    <li th:if="${loginUser.isHR || loginUser.isAdmin}" class="nav-item">
+                                        <a href="/recruit/checkUsers">甄选</a>
+                                    </li>
+                                    <li class="nav-item active" th:if="${loginUser.company == null}">
+                                        <a href="/jobs">求职</a>
+                                    </li>
+                                    <li class="nav-item" th:if="${loginUser.company != null}">
+                                        <a href="/companyManage">我的公司</a>
+                                    </li>
+                                    <li class="nav-item" th:if="${loginUser.company == null}">
+                                        <a href="/companyManage/signCompany">注册公司</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div class="job_details_area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="job_details_header">
+                        <div class="single_jobs white-bg d-flex justify-content-between">
+                            <div class="jobs_left d-flex align-items-center">
+                                <div class="thumb">
+                                    <img src="img/svg_icon/1.svg" alt="">
+                                </div>
+                                <div class="jobs_conetent">
+                                    <a href="#">
+                                        <h4>[[${job.name}]]</h4>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="jobs_right">
+                                <div class="apply_now">
+                                    <a class="heart_mark" href="#"> <i class="iconfont">&#xe678</i> </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="descript_wrap white-bg">
+                        <div class="single_wrap">
+                            <h4>职位描述</h4>
+                            [[${job.description}]]
+                        </div>
+                        <div class="single_wrap">
+                            <h4>公司介绍</h4>
+                            <p>[[${job.company.description}]]</p>
+                            <div class="submit_btn">
+                                <a class="boxed-btn3 w-100" type="submit" th:href="@{/jobs/resumes}">立即申请</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="apply_job_form white-bg">
+                        <h4>申请职位</h4>
+                        <form action="#">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="input_field">
+                                        <input type="text" placeholder="请输入姓名">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="input_field">
+                                        <input type="email" placeholder="请输入邮箱">
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="input_field">
+                                        <input type="tel" placeholder="请输入联系方式"
+                                            oninput="value=value.replace(/[^\d]/g,'')">
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <button type="button" id="inputGroupFileAddon03"><i
+                                                    class="iconfont">&#xe678</i>
+                                            </button>
+                                        </div>
+                                        <div class="custom-file">
+                                            <input type="file" class="custom-file-input" id="inputGroupFile03"
+                                                aria-describedby="inputGroupFileAddon03">
+                                            <label class="custom-file-label" for="inputGroupFile03">上传简历</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="input_field">
+                                        <textarea name="#" id="" cols="30" rows="10" placeholder="自我描述"></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="submit_btn">
+                                        <button class="boxed-btn3 w-100" type="submit">立即申请</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div> -->
+                </div>
+                <div class="col-lg-4">
+                    <div class="job_sumary">
+                        <div class="summery_header">
+                            <h3>招聘信息详情</h3>
+                        </div>
+                        <div class="job_content">
+                            <ul>
+                                <li>发布日期: <span>[[${#dates.format(job.startDate, 'yyyy年MM月dd日')}]]</span></li>
+                                <li>需求岗位: <span>[[${job.name}]]</span></li>
+                                <li>需求人数: <span>[[${job.needsNum}]]人</span></li>
+                                <li>月薪: <span>[[${job.salary/1000}]]k/月</span></li>
+                                <li>截止日期: <span>[[${#dates.format(job.endTime, 'yyyy年MM月dd日')}]]</span></li>
+                                <li>年龄限制: <span>[[${job.smallAge}]]-[[${job.bigAge}]]</span></li>
+                                <li th:if="${job.education==0}"> 学历要求: <span>无要求</span></li>
+                                <li th:if="${job.education==1}"> 学历要求: <span>中专以及以上</span></li>
+                                <li th:if="${job.education==2}"> 学历要求: <span>大专以及以上</span></li>
+                                <li th:if="${job.education==3}"> 学历要求: <span>大学本科以及以上</span></li>
+                                <li th:if="${job.education==4}"> 学历要求: <span>研究生以及以上</span></li>
+                                <li th:if="${job.education==5}"> 学历要求: <span>博士以及以上</span></li>
+                                
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="job_location_wrap">
+                        <div class="job_lok_inner">
+                            <div id="map" style="height: 200px;"></div>
+                            <!-- <script>
+                                function initMap() {
+                                    var uluru = { lat: -25.363, lng: 131.044 };
+                                    var grayStyles = [
+                                        {
+                                            featureType: "all",
+                                            stylers: [
+                                                { saturation: -90 },
+                                                { lightness: 50 }
+                                            ]
+                                        },
+                                        { elementType: 'labels.text.fill', stylers: [{ color: '#ccdee9' }] }
+                                    ];
+                                    var map = new google.maps.Map(document.getElementById('map'), {
+                                        center: { lat: -31.197, lng: 150.744 },
+                                        zoom: 9,
+                                        styles: grayStyles,
+                                        scrollwheel: false
+                                    });
+                                }
+
+                            </script>
+                            <script
+                                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDpfS1oRGreGSBU5HHjMmQ3o5NLw7VdJ6I&callback=initMap"></script> -->
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <div class="footerlogo">
+            <img style="margin-left: 15px" src="img/logo3.png" th:src="@{/asserts/img/logo3.png}" alt="">
+        </div>
+        <div class="links">
+            <dl>
+                <dt>友情推荐</dt>
+                <dd><a href="#">58同城</a></dd>
+                <dd><a href="#">BOOS直聘</a></dd>
+                <dd><a href="#">瓜子二手车</a></dd>
+                <dd><a href="#">西北工业大学招聘网</a></dd>
+                <dd><a href="#">国务院</a></dd>
+
+            </dl>
+            <dl>
+                <dt>合作伙伴</dt>
+                <dd><a href="#">华为</a></dd>
+                <dd><a href="#">大疆</a></dd>
+                <dd><a href="#">海康威视</a></dd>
+                <dd><a href="#">创维</a></dd>
+                <dd><a href="#">京东</a></dd>
+
+            </dl>
+            <dl>
+                <dt>关于打工人</dt>
+                <dd><a href="#">关于</a></dd>
+                <dd><a href="#">管理团队</a></dd>
+                <dd><a href="#">工作机会</a></dd>
+                <dd><a href="#">客户服务</a></dd>
+                <dd><a href="#">帮助</a></dd>
+
+            </dl>
+        </div>
+    </footer>
+    <!-- <script src="main.js"></script> -->
+        <script src="assets/js/vendor/modernizr-3.6.0.min.js" th:src="@{/asserts/js/vendor/modernizr-3.6.0.min.js}"></script>
+    <script src="assets/js/vendor/jquery-1.12.4.min.js" th:src="@{/asserts/js/vendor/jquery-1.12.4.min.js}"></script>
+    <script src="assets/js/bootstrap.min.js" th:src="@{/asserts/js/bootstrap.min.js/}"></script>
+    <script src="assets/js/popper.min.js" th:src="@{/asserts/js/popper.min.js}"></script>
+    <script src="assets/js/slick.min.js" th:src="@{/asserts/js/slick.min.js}"></script>
+    <script src="assets/js/isotope.pkgd.min.js" th:src="@{/asserts/js/isotope.pkgd.min.js}"></script>
+    <script src="assets/js/imagesloaded.pkgd.min.js" th:src="@{/asserts/js/imagesloaded.pkgd.min.js}"></script>
+    <script src="assets/js/jquery.magnific-popup.min.js" th:src="@{/asserts/js/jquery.magnific-popup.min.js}"></script>
+    <script src="assets/js/scrolling-nav.js" th:src="@{/asserts/js/scrolling-nav.js}"></script>
+    <script src="assets/js/jquery.easing.min.js" th:src="@{/asserts/js/jquery.easing.min.js}"></script>
+    <script src="assets/js/ajax-contact.js" th:src="@{/asserts/js/ajax-contact.js}"></script>
+    <script src="assets/js/wow.min.js" th:src="@{/asserts/js/wow.min.js}"></script>
+    
+    <script src="assets-homepage/js/owl.carousel.min.js" th:src="@{/asserts/js/owl.carousel.min.js}"></script>
+    <script src="assets-homepage/js/isotope.pkgd.min.js" th:src="@{/asserts/jsisotope.pkgd.min.js}"></script>
+    <script src="assets-homepage/js/ajax-form.js" th:src="@{/asserts/js/ajax-form.js}"></script>
+    <script src="assets-homepage/js/waypoints.min.js" th:src="@{/asserts/js/waypoints.min.js}"></script>
+    <script src="assets-homepage/js/jquery.counterup.min.js" th:src="@{/asserts/js/jquery.counterup.min.js}"></script>
+    <script src="assets-homepage/js/scrollIt.js" th:src="@{/asserts/js/scrollIt.js}"></script>
+    <script src="assets-homepage/js/jquery.scrollUp.min.js" th:src="@{/asserts/js/jquery.scrollUp.min.js}"></script>
+    <script src="assets-homepage/js/nice-select.min.js" th:src="@{/asserts/js/nice-select.min.js}"></script>
+    <script src="assets-homepage/js/jquery.slicknav.min.js" th:src="@{/asserts/js/jquery.slicknav.min.js}"></script>
+    <script src="assets-homepage/js/plugins.js" th:src="@{/asserts/js/plugins.js}"></script>
+    <!-- <script src="js/gijgo.min.js"></script> -->
+    <script src="assets-homepage/js/range.js" th:src="@{/asserts/js/range.js}"></script>
+
+    <!--contact js-->
+    <script src="assets-homepage/js/contact.js" th:src="@{/asserts/js/search/contact.js}"></script>
+    <script src="assets-homepage/js/jquery.ajaxchimp.min.js" th:src="@{/asserts/js/search/jquery.ajaxchimp.min.js}"></script>
+    <script src="assets-homepage/js/jquery.form.js" th:src="@{/asserts/js/search/jquery.form.js}"></script>
+    <script src="assets-homepage/js/jquery.validate.min.js" th:src="@{/asserts/js/search/jquery.validate.min.js}"></script>
+    <script src="assets-homepage/js/mail-script.js" th:src="@{/asserts/js/search/mail-script.js}"></script>
+    <script src="assets-homepage/js/main.js" th:src="@{/asserts/js/search/main.js}"></script>
+    <script src="assets-homepage/js/main.js" th:src="@{/asserts/js/main.js}"></script>
+    <!-- link that opens popup -->
+</body>
+
+</html>

@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<!-- saved from url=(0052)http://getbootstrap.com/docs/4.0/examples/dashboard/ -->
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
+
+<title>Dashboard Template for Bootstrap</title>
+<!-- Bootstrap core CSS -->
+<link href="asserts/css/bootstrap.min.css"
+	th:href="@{/asserts/css/bootstrap.min.css}"
+	rel="stylesheet">
+
+	<link href="http://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="assets/css/LineIcons.css" th:href="@{/asserts/css/LineIcons.css}">
+
+    <link rel="stylesheet" href="assets/css/magnific-popup.css" th:href="@{/asserts/css/magnific-popup.css}">
+
+    <link rel="stylesheet" href="assets/css/slick.css" th:href="@{/asserts/css/slick.css}">
+
+    <link rel="stylesheet" href="assets/css/animate.css" th:href="@{/asserts/css/animate.css}">
+
+    <link rel="stylesheet" href="assets/css/default.css" th:href="@{/asserts/css/default.css}">
+    <link rel="stylesheet" href="assets/css/style.css" th:href="@{/asserts/css/style.css}">
+    <link rel="stylesheet" href="assets/css/style.css" th:href="@{/asserts/css/zzpStyle.css}">
+    
+	<script src="assets/js/vendor/jquery-1.12.4.min.js" th:src="@{/asserts/js/vendor/jquery-1.12.4.min.js}"></script>
+    <script src="assets/js/bootstrap.min.js" th:src="@{/asserts/js/bootstrap.min.js/}"></script>
+	<script type="text/javascript" src="asserts/js/moment-with-locales.min.js" th:src="@{/asserts/js/moment-with-locales.min.js}"></script>
+	<script type="text/javascript" src="asserts/js/moment-timezone-with-data-2012-2022.min.js"  th:src="@{/asserts/js/moment-timezone-with-data-2012-2022.min.js}"></script>
+	<script src="asserts/js/base.js"  th:src="@{/asserts/js/base.js}"></script>
+	<script src="asserts/highlight.min.js"  th:src="@{/asserts/js/highlight.min.js}"></script>
+	<script src="asserts/theme/js/tempusdominus-bootstrap-4.js"  th:src="@{/asserts/js/tempusdominus-bootstrap-4.js}"></script>
+
+<style type="text/css">
+/* Chart.js */
+@-webkit-keyframes chartjs-render-animation {
+	from { 
+		opacity:0.99
+	}
+	to {
+		opacity: 1
+	}
+
+}
+@keyframes chartjs-render-animation {
+	from { 
+		opacity:0.99
+	}
+	to {
+		opacity: 1
+	}
+}
+.chartjs-render-monitor {
+	-webkit-animation: chartjs-render-animation 0.001s;
+	animation: chartjs-render-animation 0.001s;
+}
+</style>
+</head>
+
+<body>
+
+    <div class="preloader">
+        <div class="loader">
+            <div class="ytp-spinner">
+                <div class="ytp-spinner-container">
+                    <div class="ytp-spinner-rotator">
+                        <div class="ytp-spinner-left">
+                            <div class="ytp-spinner-circle"></div>
+                        </div>
+                        <div class="ytp-spinner-right">
+                            <div class="ytp-spinner-circle"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <section class="header-area">
+        <div class="navbar-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <nav class="navbar navbar-expand-lg">
+                            <a class="navbar-brand" href="#">
+                                <img th:src="@{/asserts/img/logo-bar.svg}" alt="Logo" width="80px">
+                            </a>
+                            <button class="navbar-toggler" type="button" data-toggle="collapse"
+                                data-target="#navbarEight" aria-controls="navbarEight" aria-expanded="false"
+                                aria-label="Toggle navigation">
+                                <span class="toggler-icon"></span>
+                                <span class="toggler-icon"></span>
+                                <span class="toggler-icon"></span>
+                            </button>
+                                                        <div class="collapse navbar-collapse sub-menu-bar" id="navbarEight">
+                                <ul class="navbar-nav ml-auto">
+                                    <li class="nav-item">
+                                        <a href="/home/logout">首页</a>
+                                    </li>
+                                    <li class="nav-item active">
+                                        <a href="/home">我的</a>
+                                    </li>
+                                    <li th:if="${loginUser.isHR || loginUser.isAdmin}" class="nav-item active">
+                                        <a href="/recruit/addJob">发布招聘信息</a>
+                                    </li>
+                                    <li th:if="${loginUser.isHR || loginUser.isAdmin}" class="nav-item">
+                                        <a href="/recruit/checkUsers">甄选</a>
+                                    </li>
+                                    <li class="nav-item" th:if="${loginUser.company == null}">
+                                        <a href="/jobs">求职</a>
+                                    </li>
+                                    <li class="nav-item" th:if="${loginUser.company != null}">
+                                        <a href="/companyManage">我的公司</a>
+                                    </li>
+                                    <li class="nav-item" th:if="${loginUser.company == null}">
+                                        <a href="/companyManage/signCompany">注册公司</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="navbar-btn d-none mt-15 d-lg-inline-block">
+                                <a class="menu-bar" href="#side-menu-right"><i class="lni-menu"></i></a>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <div class="sidebar-right">
+        <div class="sidebar-close">
+            <a class="close" href="#close"><i class="lni-close"></i></a>
+        </div>
+        <div class="sidebar-content">
+            <div class="sidebar-logo text-center">
+                <a class="navbar-brand" href="#">
+                                <img th:src="@{/asserts/img/logo-bar.svg}" alt="Logo" width="80px">
+                            </a>
+            </div>
+            <div class="sidebar-menu">
+                <ul>
+                    <li><a class="page-scroll" href="#home">首页</a></li>
+                    <li><a class="page-scroll" href="#about">产品</a></li>
+                    <li><a class="page-scroll" href="#portfolio">团队</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="overlay-right"></div>
+
+   
+    <section id="about" class="about-area">
+        <div style="margin-top:2%; margin-left: 14%; " >
+            <a style="width: 80px; text-align:center;" href="/home" class="searchbtn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-90deg-left" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M1.146 4.854a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 4H12.5A2.5 2.5 0 0 1 15 6.5v8a.5.5 0 0 1-1 0v-8A1.5 1.5 0 0 0 12.5 5H2.707l3.147 3.146a.5.5 0 1 1-.708.708l-4-4z"/>
+            </svg>
+            	返回
+            </a>
+        </div>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xl-6 col-lg-8">
+        
+        <form name="JobFrom" class="form-signup" th:action="@{/home/editEmail}" method="post" th:object="${newJob}">
+				<div style="width:100%; text-align: center;">
+					<h4>修改邮箱</h4>
+				</div>
+				<br>
+				<div class="form-group">
+					<label>新的邮箱地址</label>
+					<input name="email" type="email" class="form-control"
+						id="exampleFormControlInput1" placeholder="name@example.com" th:value="${loginUser!=null}?${loginUser.email}">
+				</div>
+				<br>
+				<button type="submit" class="btn btn-primary" style="width: 100%;">修改</button>
+			</form>
+                </div>
+            </div>
+            </div>
+        </div>
+    </section>
+
+    <a href="#" class="back-to-top"><i class="lni-chevron-up"></i></a>
+    
+		<script src="assets/js/vendor/modernizr-3.6.0.min.js" th:src="@{/asserts/js/vendor/modernizr-3.6.0.min.js}"></script>
+    <script src="assets/js/vendor/jquery-1.12.4.min.js" th:src="@{/asserts/js/vendor/jquery-1.12.4.min.js}"></script>
+
+    <script src="assets/js/bootstrap.min.js" th:src="@{/asserts/js/bootstrap.min.js/}"></script>
+    <script src="assets/js/popper.min.js" th:src="@{/asserts/js/popper.min.js}"></script>
+
+    <script src="assets/js/slick.min.js" th:src="@{/asserts/js/slick.min.js}"></script>
+
+    <script src="assets/js/isotope.pkgd.min.js" th:src="@{/asserts/js/isotope.pkgd.min.js}"></script>
+
+    <script src="assets/js/imagesloaded.pkgd.min.js" th:src="@{/asserts/js/imagesloaded.pkgd.min.js}"></script>
+
+    <script src="assets/js/jquery.magnific-popup.min.js" th:src="@{/asserts/js/jquery.magnific-popup.min.js}"></script>
+
+    <script src="assets/js/scrolling-nav.js" th:src="@{/asserts/js/scrolling-nav.js}"></script>
+    <script src="assets/js/jquery.easing.min.js" th:src="@{/asserts/js/jquery.easing.min.js}"></script>
+
+    <script src="assets/js/ajax-contact.js" th:src="@{/asserts/js/ajax-contact.js}"></script>
+
+    <script src="assets/js/wow.min.js" th:src="@{/asserts/js/wow.min.js}"></script>
+
+    <script src="assets/js/main.js" th:src="@{/asserts/js/main.js}"></script>
+</body>
+
+</html>			
+				
+				

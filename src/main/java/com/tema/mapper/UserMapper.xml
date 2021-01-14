@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tema.mapper.UserMapper" >
+    <resultMap id="BaseResultMap" type="com.tema.entities.User" >
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="name" property="name" jdbcType="VARCHAR" />
+        <result column="password" property="password" jdbcType="VARCHAR"/>
+        <result column="phone" property="phone" jdbcType="VARCHAR"/>
+        <result column="gender" property="gender" jdbcType="SMALLINT"/>
+        <result column="birth" property="birth" jdbcType="DATE"/>
+        <result column="email" property="email" jdbcType="VARCHAR" />
+    </resultMap>
+    
+    <resultMap id="companyRelationMap" type="com.tema.entities.CompanyRelation" >
+        <result column="userId" property="userId" jdbcType="INTEGER" />
+        <result column="companyId" property="companyId" jdbcType="INTEGER" />
+        <result column="isHR" property="isHR" jdbcType="BOOLEAN"/>
+        <result column="isAdmin" property="isAdmin" jdbcType="BOOLEAN"/>
+    </resultMap>
+    
+    <sql id="Base_Column_List" >
+        users.id, name, password, email, phone, birth, gender
+    </sql>
+ 
+    <select id="getAll" resultMap="BaseResultMap"  >
+       SELECT 
+       <include refid="Base_Column_List" />
+	   FROM users
+	   ORDER BY id
+    </select>
+ 
+    <select id="getOne" parameterType="Integer" resultMap="BaseResultMap" >
+       SELECT 
+       <include refid="Base_Column_List" />
+	   FROM users
+	   WHERE id = #{id}
+    </select>
+    
+    <select id="getOneByEmail" parameterType="String" resultMap="BaseResultMap" >
+       SELECT 
+       <include refid="Base_Column_List" />
+	   FROM users
+	   WHERE email = #{email}
+    </select>
+    
+    <insert id="insert" parameterType="com.tema.entities.User" >
+       INSERT INTO 
+       		users
+       		(name,password,email,gender,phone,birth) 
+       	VALUES
+       		(#{name}, #{password}, #{email}, #{gender},#{phone},#{birth})
+    </insert>
+    
+    <update id="update" parameterType="com.tema.entities.User" >
+       UPDATE 
+       		users
+       SET 
+       		name = #{name}, password = #{password},
+       		email = #{email}, gender = #{gender},
+       		phone = #{phone}, birth = #{birth}
+       WHERE 
+       		id = #{id}
+    </update>
+    
+    <select id="getCompany" resultMap="companyRelationMap">
+       SELECT 
+       userId, companyId, isHR, isAdmin
+	   FROM companyRelation
+	   WHERE userId = #{userId}
+    </select>
+    
+    <insert id="addCompany">
+       INSERT INTO 
+       		companyRelation
+      		(userId, companyId, isHR, isAdmin)
+      		VALUES
+      		(#{id}, #{companyId}, false, false)
+    </insert>
+    
+    <update id="setCompany">
+       UPDATE 
+       		companyRelation
+       SET 
+       		companyId = #{companyId}, isHR = false, isAdmin = false
+       WHERE 
+       		userId = #{id}
+    </update>
+    
+    <update id="setAdmin">
+       UPDATE 
+       		companyRelation
+       SET 
+       		isAdmin = true
+       WHERE 
+       		userId = #{id}
+    </update>
+    
+    <update id="setHR">
+       UPDATE 
+       		companyRelation
+       SET 
+       		isHR = true
+       WHERE 
+       		userId = #{id}
+    </update>
+    
+    <select id="findPageByCompany" resultType="Integer">
+       SELECT 
+       users.id
+	   FROM users, companyRelation
+	   WHERE users.id = companyRelation.userId and companyRelation.companyId = #{companyId}
+    </select>
+    
+    <select id="getSearchHistory" resultType="String">
+       SELECT 
+       history
+	   FROM searchHistory
+	   WHERE userId = #{userId}
+	   ORDER BY times
+	   LIMIT 5
+    </select>
+    
+    <update id="addHistory">
+       INSERT INTO searchHistory(userId, history, times)
+       VALUES(#{userId}, #{history}, 1)
+       ON conflict(userId, history)
+       DO UPDATE SET times = searchHistory.times + 1 
+    </update>
+</mapper>

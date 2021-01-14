@@ -1,0 +1,488 @@
+﻿<!doctype html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Home</title>
+
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css" th:href="@{/asserts/css/bootstrap.min.css}">
+
+    <link rel="stylesheet" href="assets/css/LineIcons.css" th:href="@{/asserts/css/LineIcons.css}">
+
+    <link rel="stylesheet" href="assets/css/magnific-popup.css" th:href="@{/asserts/css/magnific-popup.css}">
+
+    <link rel="stylesheet" href="assets/css/slick.css" th:href="@{/asserts/css/slick.css}">
+
+    <link rel="stylesheet" href="assets/css/animate.css" th:href="@{/asserts/css/animate.css}">
+
+    <link rel="stylesheet" href="assets/css/default.css" th:href="@{/asserts/css/default.css}">
+
+    <link rel="stylesheet" href="assets/css/style.css" th:href="@{/asserts/css/style.css}">
+</head>
+
+<body>
+
+    <div class="preloader">
+        <div class="loader">
+            <div class="ytp-spinner">
+                <div class="ytp-spinner-container">
+                    <div class="ytp-spinner-rotator">
+                        <div class="ytp-spinner-left">
+                            <div class="ytp-spinner-circle"></div>
+                        </div>
+                        <div class="ytp-spinner-right">
+                            <div class="ytp-spinner-circle"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <section class="header-area">
+        <div class="navbar-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <nav class="navbar navbar-expand-lg">
+                            <a class="navbar-brand" href="#">
+                                <img th:src="@{/asserts/img/logo-bar.svg}" alt="Logo" width="80px">
+                            </a>
+                            <button class="navbar-toggler" type="button" data-toggle="collapse"
+                                data-target="#navbarEight" aria-controls="navbarEight" aria-expanded="false"
+                                aria-label="Toggle navigation">
+                                <span class="toggler-icon"></span>
+                                <span class="toggler-icon"></span>
+                                <span class="toggler-icon"></span>
+                            </button>
+                            <div class="collapse navbar-collapse sub-menu-bar" id="navbarEight">
+                                <ul class="navbar-nav ml-auto">
+                                    <li class="nav-item active">
+                                        <a class="page-scroll" href="#home">首页</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="page-scroll" href="#about">产品介绍</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="page-scroll" href="#portfolio">关于我们</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="navbar-btn d-none mt-15 d-lg-inline-block">
+                                <a class="menu-bar" href="#side-menu-right"><i class="lni-menu"></i></a>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="home" class="slider-area">
+            <div class="bd-example">
+                <div id="carouselOne" class="carousel slide" data-ride="carousel">
+                    <ol class="carousel-indicators">
+                        <li data-target="#carouselOne" data-slide-to="0" class="active"></li>
+                        <li data-target="#carouselOne" data-slide-to="1"></li>
+                        <li data-target="#carouselOne" data-slide-to="2"></li>
+                    </ol>
+                    <div class="carousel-inner">
+                        <div class="carousel-item bg_cover active"
+                            style="background-image: url(assets/images/slider-1.jpg)"
+                            th:style="${'background-image: url('}+@{/asserts/img/slider-1.jpg}+${')'}">
+                            <div class="carousel-caption">
+                                <div class="container">
+                                    <div class="row justify-content-center">
+                                        <div class="col-xl-6 col-lg-7 col-sm-10">
+                                            <h2 class="carousel-title">帮助您找到最适合的岗位</h2>
+                                            <ul class="carousel-btn rounded-buttons">
+                                                <li><a class="main-btn rounded-three" href="/login">登陆</a></li>
+                                                <li><a class="main-btn rounded-one" href="/signup">注册</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item bg_cover" style="background-image: url(assets/images/slider-2.jpg)"
+                        th:style="${'background-image: url('}+@{/asserts/img/slider-2.jpg}+${')'}">
+                            <div class="carousel-caption">
+                                <div class="container">
+                                    <div class="row justify-content-center">
+                                        <div class="col-xl-6 col-lg-7 col-sm-10">
+                                            <h2 class="carousel-title">强大的职员信息管理能力</h2>
+                                            <ul class="carousel-btn rounded-buttons">
+                                                <li><a class="main-btn rounded-three" href="/login">登陆</a></li>
+                                                <li><a class="main-btn rounded-one" href="/signup">注册</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item bg_cover" style="background-image: url(assets/images/slider-3.jpg)"
+                        th:style="${'background-image: url('}+@{/asserts/img/slider-3.jpg}+${')'}">
+                            <div class="carousel-caption">
+                                <div class="container">
+                                    <div class="row justify-content-center">
+                                        <div class="col-xl-6 col-lg-7 col-sm-10">
+                                            <h2 class="carousel-title">职员失信情况一键查询</h2>
+                                            <ul class="carousel-btn rounded-buttons">
+                                                <li><a class="main-btn rounded-three" href="/login">登陆</a></li>
+                                                <li><a class="main-btn rounded-one" href="/signup">注册</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <a class="carousel-control-prev" href="#carouselOne" role="button" data-slide="prev">
+                        <i class="lni-arrow-left-circle"></i>
+                    </a>
+                    <a class="carousel-control-next" href="#carouselOne" role="button" data-slide="next">
+                        <i class="lni-arrow-right-circle"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <div class="sidebar-right">
+        <div class="sidebar-close">
+            <a class="close" href="#close"><i class="lni-close"></i></a>
+        </div>
+        <div class="sidebar-content">
+            <div class="sidebar-logo text-center">
+                <a href="#"><img th:src="@{/asserts/img/logo2.svg}" alt="Logo"></a>
+            </div>
+            <div class="sidebar-menu">
+                <ul>
+                    <li><a class="page-scroll" href="#home">首页</a></li>
+                    <li><a class="page-scroll" href="#about">产品</a></li>
+                    <li><a class="page-scroll" href="#portfolio">团队</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="overlay-right"></div>
+
+
+    <section id="about" class="about-area">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xl-6 col-lg-8">
+                    <div class="about-image text-center wow fadeInUp" data-wow-duration="1.5s" data-wow-offset="100">
+                        <img th:src="@{/asserts/img/services.png}" alt="services">
+                    </div>
+                    <div class="section-title text-center mt-30 pb-40">
+                        <h4 class="title wow fadeInUp" data-wow-duration="1.5s" data-wow-delay="0.6s">我们的强大之处</h4>
+                        <p class="text wow fadeInUp" data-wow-duration="1.5s" data-wow-delay="1s">专业的小微企业的人才管理系统</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="single-about d-sm-flex mt-30 wow fadeInUp" data-wow-duration="1.5s"
+                        data-wow-delay="1.2s">
+                        <div class="about-icon">
+                            <img th:src="@{/asserts/img/icon-1.png}" alt="Icon">
+                        </div>
+                        <div class="about-content media-body">
+                            <h4 class="about-title">千万岗位智能推荐</h4>
+                            <p class="text">拥有繁多的小微企业岗位发布，最实时的岗位智能推送</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="single-about d-sm-flex mt-30 wow fadeInUp" data-wow-duration="1.5s"
+                        data-wow-delay="1.4s">
+                        <div class="about-icon">
+                            <img th:src="@{/asserts/img/icon-2.png}" alt="Icon">
+                        </div>
+                        <div class="about-content media-body">
+                            <h4 class="about-title">人才能力一键查询</h4>
+                            <p class="text">记录已就职员工的能力信息以及公司评价，让HR能够快速初步筛选适合自己企业的人才</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="single-about d-sm-flex mt-30 wow fadeInUp" data-wow-duration="1.5s"
+                        data-wow-delay="1.6s">
+                        <div class="about-icon">
+                            <img th:src="@{/asserts/img/icon-3.png}" alt="Icon">
+                        </div>
+                        <div class="about-content media-body">
+                            <h4 class="about-title">员工失职永久记录</h4>
+                            <p class="text">员工失职信息登陆，使其他小微企业不再“踩坑”</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="single-about d-sm-flex mt-30 wow fadeInUp" data-wow-duration="1.5s"
+                        data-wow-delay="1.8s">
+                        <div class="about-icon">
+                            <img th:src="@{/asserts/img/icon-4.png}" alt="Icon">
+                        </div>
+                        <div class="about-content media-body">
+                            <h4 class="about-title">全面数据实时更新</h4>
+                            <p class="text">员工和公司的所有数据实时化，不再停留于“过去时”</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="portfolio" class="portfolio-area">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-6">
+                    <div class="section-title text-center pb-20">
+                        <h3 class="title">关于我们</h3>
+                        <p class="text">我们是西北工业大学的专业团队，以下是我们的组成!</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="portfolio-menu pt-30 text-center">
+                        <ul>
+                            <li data-filter="*" class="active">所有</li>
+                            <li data-filter=".front-end">前端</li>
+                            <li data-filter=".back-end">后端</li>
+                            <li data-filter=".database">数据库</li>
+                            <li data-filter=".document">文档</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="row grid">
+                <div class="col-lg-4 col-sm-6 back-end">
+                    <div class="single-portfolio mt-30 wow fadeInUp" data-wow-duration="1.5s" data-wow-delay="0.2s">
+                        <div class="portfolio-image">
+                            <img th:src="@{/asserts/img/portfolio-1.png}" alt="">
+                            <div class="portfolio-overlay d-flex align-items-center justify-content-center">
+                                <div class="portfolio-content">
+                                    <div class="portfolio-icon">
+                                        <a class="image-popup" href="assets/images/portfolio-1.png}"><i
+                                                class="lni-zoom-in"></i></a>
+                                        <img th:src="@{/asserts/img/shape.svg}" alt="shape" class="shape">
+                                    </div>
+                                    <div class="portfolio-icon">
+                                        <a href="#"><i class="lni-link"></i></a>
+                                        <img th:src="@{/asserts/img/shape.svg}" alt="shape" class="shape">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="portfolio-text">
+                            <h4 class="portfolio-title"><a href="#">刘嘉伟</a></h4>
+                            <p class="text">干他娘的</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-6 back-end database">
+                    <div class="single-portfolio mt-30 wow fadeInUp" data-wow-duration="1.5s" data-wow-delay="0.4s">
+                        <div class="portfolio-image">
+                            <img th:src="@{/asserts/img/portfolio-2.png}" alt="">
+                            <div class="portfolio-overlay d-flex align-items-center justify-content-center">
+                                <div class="portfolio-content">
+                                    <div class="portfolio-icon">
+                                        <a class="image-popup" href="assets/images/portfolio-2.png}"><i
+                                                class="lni-zoom-in"></i></a>
+                                        <img th:src="@{/asserts/img/shape.svg}" alt="shape" class="shape">
+                                    </div>
+                                    <div class="portfolio-icon">
+                                        <a href="#"><i class="lni-link"></i></a>
+                                        <img th:src="@{/asserts/img/shape.svg}" alt="shape" class="shape">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="portfolio-text">
+                            <h4 class="portfolio-title"><a href="#">章值萍</a></h4>
+                            <p class="text">烂分要紧</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-6 back-end document">
+                    <div class="single-portfolio mt-30 wow fadeInUp" data-wow-duration="1.5s" data-wow-delay="0.7s">
+                        <div class="portfolio-image">
+                            <img th:src="@{/asserts/img/portfolio-3.png}" alt="">
+                            <div class="portfolio-overlay d-flex align-items-center justify-content-center">
+                                <div class="portfolio-content">
+                                    <div class="portfolio-icon">
+                                        <a class="image-popup" href="assets/images/portfolio-3.png}"><i
+                                                class="lni-zoom-in"></i></a>
+                                        <img th:src="@{/asserts/img/shape.svg}" alt="shape" class="shape">
+                                    </div>
+                                    <div class="portfolio-icon">
+                                        <a href="#"><i class="lni-link"></i></a>
+                                        <img th:src="@{/asserts/img/shape.svg}" alt="shape" class="shape">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="portfolio-text">
+                            <h4 class="portfolio-title"><a href="#">蒲嘉琛</a></h4>
+                            <p class="text">有手就行</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-6 document">
+                    <div class="single-portfolio mt-30 wow fadeInUp" data-wow-duration="1.5s" data-wow-delay="0.2s">
+                        <div class="portfolio-image">
+                            <img th:src="@{/asserts/img/portfolio-4.png}" alt="">
+                            <div class="portfolio-overlay d-flex align-items-center justify-content-center">
+                                <div class="portfolio-content">
+                                    <div class="portfolio-icon">
+                                        <a class="image-popup" href="assets/images/portfolio-4.png}"><i
+                                                class="lni-zoom-in"></i></a>
+                                        <img th:src="@{/asserts/img/shape.svg}" alt="shape" class="shape">
+                                    </div>
+                                    <div class="portfolio-icon">
+                                        <a href="#"><i class="lni-link"></i></a>
+                                        <img th:src="@{/asserts/img/shape.svg}" alt="shape" class="shape">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="portfolio-text">
+                            <h4 class="portfolio-title"><a href="#">孙雷</a></h4>
+                            <p class="text">编造数据我最在行了</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-6 document">
+                    <div class="single-portfolio mt-30 wow fadeInUp" data-wow-duration="1.5s" data-wow-delay="0.4s">
+                        <div class="portfolio-image">
+                            <img th:src="@{/asserts/img/portfolio-5.png}" alt="">
+                            <div class="portfolio-overlay d-flex align-items-center justify-content-center">
+                                <div class="portfolio-content">
+                                    <div class="portfolio-icon">
+                                        <a class="image-popup" href="assets/images/portfolio-5.png}"><i
+                                                class="lni-zoom-in"></i></a>
+                                        <img th:src="@{/asserts/img/shape.svg}" alt="shape" class="shape">
+                                    </div>
+                                    <div class="portfolio-icon">
+                                        <a href="#"><i class="lni-link"></i></a>
+                                        <img th:src="@{/asserts/img/shape.svg}" alt="shape" class="shape">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="portfolio-text">
+                            <h4 class="portfolio-title"><a href="#">罗庆欧</a></h4>
+                            <p class="text">上号上号</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-6 front-end">
+                    <div class="single-portfolio mt-30 wow fadeInUp" data-wow-duration="1.5s" data-wow-delay="0.7s">
+                        <div class="portfolio-image">
+                            <img th:src="@{/asserts/img/portfolio-6.png}" alt="">
+                            <div class="portfolio-overlay d-flex align-items-center justify-content-center">
+                                <div class="portfolio-content">
+                                    <div class="portfolio-icon">
+                                        <a class="image-popup" href="assets/images/portfolio-6.png}"><i
+                                                class="lni-zoom-in"></i></a>
+                                        <img th:src="@{/asserts/img/shape.svg}" alt="shape" class="shape">
+                                    </div>
+                                    <div class="portfolio-icon">
+                                        <a href="#"><i class="lni-link"></i></a>
+                                        <img th:src="@{/asserts/img/shape.svg}" alt="shape" class="shape">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="portfolio-text">
+                            <h4 class="portfolio-title"><a href="#">刘岳萍</a></h4>
+                            <p class="text">暂无介绍</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-6 front-end">
+                    <div class="single-portfolio mt-30 wow fadeInUp" data-wow-duration="1.5s" data-wow-delay="0.7s">
+                        <div class="portfolio-image">
+                            <img th:src="@{/asserts/img/portfolio-6.png}" alt="">
+                            <div class="portfolio-overlay d-flex align-items-center justify-content-center">
+                                <div class="portfolio-content">
+                                    <div class="portfolio-icon">
+                                        <a class="image-popup" href="assets/images/portfolio-6.png}"><i
+                                                class="lni-zoom-in"></i></a>
+                                        <img th:src="@{/asserts/img/shape.svg}" alt="shape" class="shape">
+                                    </div>
+                                    <div class="portfolio-icon">
+                                        <a href="#"><i class="lni-link"></i></a>
+                                        <img th:src="@{/asserts/img/shape.svg}" alt="shape" class="shape">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="portfolio-text">
+                            <h4 class="portfolio-title"><a href="#">王锦策</a></h4>
+                            <p class="text">暂无介绍</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-6 front-end">
+                    <div class="single-portfolio mt-30 wow fadeInUp" data-wow-duration="1.5s" data-wow-delay="0.7s">
+                        <div class="portfolio-image">
+                            <img th:src="@{/asserts/img/portfolio-6.png}" alt="">
+                            <div class="portfolio-overlay d-flex align-items-center justify-content-center">
+                                <div class="portfolio-content">
+                                    <div class="portfolio-icon">
+                                        <a class="image-popup" href="assets/images/portfolio-6.png}"><i
+                                                class="lni-zoom-in"></i></a>
+                                        <img th:src="@{/asserts/img/shape.svg}" alt="shape" class="shape">
+                                    </div>
+                                    <div class="portfolio-icon">
+                                        <a href="#"><i class="lni-link"></i></a>
+                                        <img th:src="@{/asserts/img/shape.svg}" alt="shape" class="shape">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="portfolio-text">
+                            <h4 class="portfolio-title"><a href="#">王燕</a></h4>
+                            <p class="text">暂无介绍</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <a href="#" class="back-to-top"><i class="lni-chevron-up"></i></a>
+
+    <script src="assets/js/vendor/modernizr-3.6.0.min.js" th:src="@{/asserts/js/vendor/modernizr-3.6.0.min.js}"></script>
+    <script src="assets/js/vendor/jquery-1.12.4.min.js" th:src="@{/asserts/js/vendor/jquery-1.12.4.min.js}"></script>
+
+    <script src="assets/js/bootstrap.min.js" th:src="@{/asserts/js/bootstrap.min.js/}"></script>
+    <script src="assets/js/popper.min.js" th:src="@{/asserts/js/popper.min.js}"></script>
+
+    <script src="assets/js/slick.min.js" th:src="@{/asserts/js/slick.min.js}"></script>
+
+    <script src="assets/js/isotope.pkgd.min.js" th:src="@{/asserts/js/isotope.pkgd.min.js}"></script>
+
+    <script src="assets/js/imagesloaded.pkgd.min.js" th:src="@{/asserts/js/imagesloaded.pkgd.min.js}"></script>
+
+    <script src="assets/js/jquery.magnific-popup.min.js" th:src="@{/asserts/js/jquery.magnific-popup.min.js}"></script>
+
+    <script src="assets/js/scrolling-nav.js" th:src="@{/asserts/js/scrolling-nav.js}"></script>
+    <script src="assets/js/jquery.easing.min.js" th:src="@{/asserts/js/jquery.easing.min.js}"></script>
+
+    <script src="assets/js/ajax-contact.js" th:src="@{/asserts/js/ajax-contact.js}"></script>
+
+    <script src="assets/js/wow.min.js" th:src="@{/asserts/js/wow.min.js}"></script>
+
+    <script src="assets/js/main.js" th:src="@{/asserts/js/main.js}"></script>
+</body>
+
+</html>

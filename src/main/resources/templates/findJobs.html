@@ -1,0 +1,451 @@
+<!doctype html>
+<html class="no-js" lang="en"  xmlns:th="http://www.thymeleaf.org">
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>home3.0</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- <link rel="manifest" href="site.webmanifest"> -->
+    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.png">
+    <!-- Place favicon.ico in the root directory -->
+    <link rel="stylesheet" href="assets/css/LineIcons.css" th:href="@{/asserts/css/LineIcons.css}">
+
+    <link rel="stylesheet" href="assets/css/magnific-popup.css" th:href="@{/asserts/css/magnific-popup.css}">
+
+    <link rel="stylesheet" href="assets/css/slick.css" th:href="@{/asserts/css/slick.css}">
+
+    <link rel="stylesheet" href="assets/css/animate.css" th:href="@{/asserts/css/animate.css}">
+
+    <link rel="stylesheet" href="assets/css/default.css" th:href="@{/asserts/css/default.css}">
+
+    <link rel="stylesheet" href="assets/css/style.css" th:href="@{/asserts/css/style.css}">
+    <!-- CSS here -->
+    <link rel="stylesheet" href="assets-homepage/bootstrap.min.css" th:href="@{/asserts/css/bootstrap.min.css}">
+    <link rel="stylesheet" href="assets-homepage/owl.carousel.min.css" th:href="@{/asserts/css/owl.carousel.min.css}">
+    <link rel="stylesheet" href="assets-homepage/magnific-popup.css" th:href="@{/asserts/css/magnific-popup.css}">
+    <link rel="stylesheet" href="assets-homepage/font-awesome.min.css" th:href="@{/asserts/css/font-awesome.min.css}">
+    <link rel="stylesheet" href="assets-homepage/themify-icons.css" th:href="@{/asserts/css/themify-icons.css}">
+    <link rel="stylesheet" href="assets-homepage/nice-select.css" th:href="@{/asserts/css/nice-select.css}">
+    
+    <link rel="stylesheet" href="assets-homepage/flaticon.css" th:href="@{/asserts/css/flaticon.css}">
+    <link rel="stylesheet" href="assets-homepage/jquery-ui.css" th:href="@{/asserts/css/jquery-ui.css}">
+    <link rel="stylesheet" href="assets-homepage/gijgo.css" th:href="@{/asserts/css/gijgo.css}">
+    <link rel="stylesheet" href="assets-homepage/animate.min.css" th:href="@{/asserts/css/animate.min.css}">
+    <link rel="stylesheet" href="assets-homepage/slicknav.css" th:href="@{/asserts/css/slicknav.css}">
+    <link rel="stylesheet" href="assets-homepage/style.css" th:href="@{/asserts/css/style.css}">
+    <link rel="stylesheet" href="assets-homepage/style.css" th:href="@{/asserts/css/style-search.css}">
+    <link href="assets-homepage/nav1.1.css" th:href="@{/asserts/css/nav1.1.css}" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="assets-homepage/footer.css" th:href="@{/asserts/css/footer.css}">
+    <style>
+        .info p {
+            width: 500px;
+            margin: 0;
+            font-size: 15px;
+            font-weight: 700;
+            border-radius: 5px;
+            font-family: 'YouYuan';
+            display: -webkit-box;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            line-height: 16.5px;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="header-area">
+        <div class="navbar-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <nav class="navbar navbar-expand-lg">
+                            <a class="navbar-brand" href="#">
+                                <img src="assets/images/logo.png" th:src="@{/asserts/img/logo-bar.svg}" alt="Logo" width="80px">
+                            </a>
+                            <button class="navbar-toggler" type="button" data-toggle="collapse"
+                                data-target="#navbarEight" aria-controls="navbarEight" aria-expanded="false"
+                                aria-label="Toggle navigation">
+                                <span class="toggler-icon"></span>
+                                <span class="toggler-icon"></span>
+                                <span class="toggler-icon"></span>
+                            </button>
+                            <div class="collapse navbar-collapse sub-menu-bar" id="navbarEight">
+                                <ul class="navbar-nav ml-auto">
+                                    <li class="nav-item">
+                                        <a href="/home/logout">首页</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="/home">我的</a>
+                                    </li>
+                                    <li th:if="${loginUser.isHR || loginUser.isAdmin}" class="nav-item">
+                                        <a href="/recruit/addJob">发布招聘信息</a>
+                                    </li>
+                                    <li th:if="${loginUser.isHR || loginUser.isAdmin}" class="nav-item">
+                                        <a href="/recruit/checkUsers">甄选</a>
+                                    </li>
+                                    <li class="nav-item active" th:if="${loginUser.company == null}">
+                                        <a href="/jobs">求职</a>
+                                    </li>
+                                    <li class="nav-item" th:if="${loginUser.company != null}">
+                                        <a href="/companyManage">我的公司</a>
+                                    </li>
+                                    <li class="nav-item" th:if="${loginUser.company == null}">
+                                        <a href="/companyManage/signCompany">注册公司</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div class="bradcam_area" th:style="${'background-image: url('}+@{/asserts/img/slider-1.jpg}+${');'}">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="bradcam_text">
+                        <h3>南山慕雪 灿烂千阳</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/ bradcam_area  -->
+    
+    <div class="catagory_area" style="padding-bottom: 50px; padding-top:50px">
+        <div class="container">
+            <div class="row cat_search">
+                <div class="col-lg-3 col-md-4">
+                    <div class="single_input">
+                        <input id="keyWord" type="text" placeholder="关键词" th:value="${keyword!=null?keyword:''}">
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4">
+                    <div class="single_input">
+                        <select id="salarySelect" class="wide">
+                            <option value="0" th:selected="${salary == null || salary == 0}" data-display="选择薪酬要求">不限制</option>
+                            <option value="1" th:selected="${salary != null && salary == 1}">3000以上</option>
+                            <option value="2" th:selected="${salary != null && salary == 2}">5000以上</option>
+                            <option value="3" th:selected="${salary != null && salary == 3}">10000以上</option>
+                            <option value="4" th:selected="${salary != null && salary == 4}">20000以上</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4">
+                    <div class="single_input">
+                        <select id="educationSelect" class="wide">
+                            <option value="0" th:selected="${education == null || education == 0}" data-display="选择学历要求">不限制</option>
+                            <option value="1" th:selected="${education != null && education == 1}">中专以及以下</option>
+                            <option value="2" th:selected="${education != null && education == 2}">大专以及以下</option>
+                            <option value="3" th:selected="${education != null && education == 3}">本科以及以下</option>
+                            <option value="4" th:selected="${education != null && education == 4}">研究生以及以下</option>
+                            <option value="5" th:selected="${education != null && education == 5}">博士以及以下</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-12">
+                    <div class="job_btn">
+                        <a href="#" class="boxed-btn3" onclick="searchNow()">查找</a>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="popular_search d-flex align-items-center">
+                        <span>常用搜索:</span>
+                        <ul>
+                        	<li><a href="/jobs/recommend">由我们智能推荐</a></li>
+                            <li><a href="/jobs/findJobs?keyword=后端">后端</a></li>
+                            <li><a href="/jobs/findJobs?keyword=数据库">数据库</a></li>
+                            <li><a href="/jobs/findJobs?keyword=前端">前端</a></li>
+                            <li><a href="/jobs/findJobs?keyword=市场管理">市场管理</a></li>
+                            <li><a href="/jobs/findJobs?keyword=建筑设计">建筑设计</a></li>
+                            <li><a href="/jobs/findJobs?keyword=游戏开发">游戏开发</a></li>
+                            <li><a href="/jobs/findJobs?keyword=会计">会计</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- job_listing_area_start  -->
+    <div class="job_listing_area plus_padding" style="padding-bottom: 50px; padding-top:50px">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-1">
+                </div>
+                <div class="col-lg-10">
+
+                    <div class="job_lists m-0">
+                        <div class="row">
+                            <div class=" col-lg-12 col-md-12">
+                            
+                                <div th:each="job:${jobs}" class=" size single_jobs white-bg d-flex justify-content-between">
+                                    <div class="jobs_left d-flex align-items-center">
+                                        <div class="thumb">
+                                            <img src="img/svg_icon/1.svg" alt="">
+                                        </div>
+                                        <div class="jobs_conetent">
+                                            <a href="job_details.html" class="jobname">
+                                                <h4 th:utext="${job.name}"></h4>
+                                            </a>
+                                            <div>
+                                                <div class="info">
+                                                    <p th:utext="${job.description}">
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="links_locat d-flex align-items-center">
+                                                <div class="location">
+                                                    <p> 
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-dollar-sign"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+                                                    [[${job.salary/1000}]]k</p>
+                                                </div>
+                                                <div class="location" th:switch="${job.education}">
+                                                    <p th:case="0">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-award"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg>
+                                                                                             无要求</p>
+                                                    <p th:case="1">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-award"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg>
+                                                                                             中专以及以上</p>
+                                                    <p th:case="2">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-award"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg>
+                                                                                             大专以及以上</p>
+                                                    <p th:case="3">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-award"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg>
+                                                                                             大学本科以及以上</p>
+                                                    <p th:case="4">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-award"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg>
+                                                                                             研究生以及以上</p>
+                                                    <p th:case="52">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-award"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg>
+                                                                                             博士以及以上</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="jobs_right">
+                                        <div class="apply_now">
+                                            <a th:href="@{/jobs/detial/}+${job.id}" class="boxed-btn3">详情</a>
+                                        </div>
+                                        <div class="date">
+                                            <p>将截止于: [[${#dates.format(job.endTime, 'yyyy.MM.dd')}]]</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <div class="row">
+                            <div class="size col-lg-12">
+                                <div class="pagination_wrap">
+                                    <ul>
+                                        <li><a href="#" onclick="searchBefore()">
+                                        	<svg xmlns="http://www.w3.org/2000/svg" width="18" height="14" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+  												<path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
+											</svg>
+                                        </a></li>
+                                        <li th:if="${pageNo-1>0}" onclick="searchBeforeTwice()")><a href="#"><span>[[${pageNo-1}]]</span></a></li>
+                                        <li th:if="${pageNo>0}" onclick="searchBefore()"><a href="#"><span>[[${pageNo}]]</span></a></li>
+                                        <li><a href="#" style="background-color: #00D363; color:white"><span>[[${pageNo + 1}]]</span></a></li>
+                                        <li th:if="${pageNo+2<=allPages}" onclick="searchNext()"><a href="#"><span>[[${pageNo+2}]]</span></a></li>
+                                        <li th:if="${pageNo+3<=allPages}" onclick="searchNextTwice()"><a href="#"><span>[[${pageNo+3}]]</span></a></li>
+                                        <li><a href="#" onclick="searchNext()"> 
+											<svg xmlns="http://www.w3.org/2000/svg" s width="18" height="14" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+  												<path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+											</svg>
+										</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footerlogo">
+            <img style="margin-left: 15px" src="img/logo3.png" th:src="@{/asserts/img/logo3.png}" alt="">
+        </div>
+        <div class="links">
+            <dl>
+                <dt>友情推荐</dt>
+                <dd><a href="#">58同城</a></dd>
+                <dd><a href="#">BOOS直聘</a></dd>
+                <dd><a href="#">瓜子二手车</a></dd>
+                <dd><a href="#">西北工业大学招聘网</a></dd>
+                <dd><a href="#">国务院</a></dd>
+
+            </dl>
+            <dl>
+                <dt>合作伙伴</dt>
+                <dd><a href="#">华为</a></dd>
+                <dd><a href="#">大疆</a></dd>
+                <dd><a href="#">海康威视</a></dd>
+                <dd><a href="#">创维</a></dd>
+                <dd><a href="#">京东</a></dd>
+
+            </dl>
+            <dl>
+                <dt>关于打工人</dt>
+                <dd><a href="#">关于</a></dd>
+                <dd><a href="#">管理团队</a></dd>
+                <dd><a href="#">工作机会</a></dd>
+                <dd><a href="#">客户服务</a></dd>
+                <dd><a href="#">帮助</a></dd>
+
+            </dl>
+        </div>
+    </footer>
+    <!-- link that opens popup -->
+    <!-- JS here -->
+    <script src="assets/js/vendor/modernizr-3.6.0.min.js" th:src="@{/asserts/js/vendor/modernizr-3.6.0.min.js}"></script>
+    <script src="assets/js/vendor/jquery-1.12.4.min.js" th:src="@{/asserts/js/vendor/jquery-1.12.4.min.js}"></script>
+    <script src="assets/js/bootstrap.min.js" th:src="@{/asserts/js/bootstrap.min.js/}"></script>
+    <script src="assets/js/popper.min.js" th:src="@{/asserts/js/popper.min.js}"></script>
+    <script src="assets/js/slick.min.js" th:src="@{/asserts/js/slick.min.js}"></script>
+    <script src="assets/js/isotope.pkgd.min.js" th:src="@{/asserts/js/isotope.pkgd.min.js}"></script>
+    <script src="assets/js/imagesloaded.pkgd.min.js" th:src="@{/asserts/js/imagesloaded.pkgd.min.js}"></script>
+    <script src="assets/js/jquery.magnific-popup.min.js" th:src="@{/asserts/js/jquery.magnific-popup.min.js}"></script>
+    <script src="assets/js/scrolling-nav.js" th:src="@{/asserts/js/scrolling-nav.js}"></script>
+    <script src="assets/js/jquery.easing.min.js" th:src="@{/asserts/js/jquery.easing.min.js}"></script>
+    <script src="assets/js/ajax-contact.js" th:src="@{/asserts/js/ajax-contact.js}"></script>
+    <script src="assets/js/wow.min.js" th:src="@{/asserts/js/wow.min.js}"></script>
+    
+    <script src="assets-homepage/js/owl.carousel.min.js" th:src="@{/asserts/js/owl.carousel.min.js}"></script>
+    <script src="assets-homepage/js/isotope.pkgd.min.js" th:src="@{/asserts/jsisotope.pkgd.min.js}"></script>
+    <script src="assets-homepage/js/ajax-form.js" th:src="@{/asserts/js/ajax-form.js}"></script>
+    <script src="assets-homepage/js/waypoints.min.js" th:src="@{/asserts/js/waypoints.min.js}"></script>
+    <script src="assets-homepage/js/jquery.counterup.min.js" th:src="@{/asserts/js/jquery.counterup.min.js}"></script>
+    <script src="assets-homepage/js/scrollIt.js" th:src="@{/asserts/js/scrollIt.js}"></script>
+    <script src="assets-homepage/js/jquery.scrollUp.min.js" th:src="@{/asserts/js/jquery.scrollUp.min.js}"></script>
+    <script src="assets-homepage/js/nice-select.min.js" th:src="@{/asserts/js/nice-select.min.js}"></script>
+    <script src="assets-homepage/js/jquery.slicknav.min.js" th:src="@{/asserts/js/jquery.slicknav.min.js}"></script>
+    <script src="assets-homepage/js/plugins.js" th:src="@{/asserts/js/plugins.js}"></script>
+    <!-- <script src="js/gijgo.min.js"></script> -->
+    <script src="assets-homepage/js/range.js" th:src="@{/asserts/js/range.js}"></script>
+
+    <!--contact js-->
+    <script src="assets-homepage/js/contact.js" th:src="@{/asserts/js/search/contact.js}"></script>
+    <script src="assets-homepage/js/jquery.ajaxchimp.min.js" th:src="@{/asserts/js/search/jquery.ajaxchimp.min.js}"></script>
+    <script src="assets-homepage/js/jquery.form.js" th:src="@{/asserts/js/search/jquery.form.js}"></script>
+    <script src="assets-homepage/js/jquery.validate.min.js" th:src="@{/asserts/js/search/jquery.validate.min.js}"></script>
+    <script src="assets-homepage/js/mail-script.js" th:src="@{/asserts/js/search/mail-script.js}"></script>
+    <script src="assets-homepage/js/main.js" th:src="@{/asserts/js/search/main.js}"></script>
+    <script src="assets-homepage/js/main.js" th:src="@{/asserts/js/main.js}"></script>
+    <script>
+        $(function () {
+            $("#slider-range").slider({
+                range: true,
+                min: 0,
+                max: 24600,
+                values: [750, 24600],
+                slide: function (event, ui) {
+                    $("#amount").val("$" + ui.values[0] + " - $" + ui.values[1] + "/ Year");
+                }
+            });
+            $("#amount").val("$" + $("#slider-range").slider("values", 0) +
+                " - $" + $("#slider-range").slider("values", 1) + "/ Year");
+        });
+    </script>
+    
+    <script>
+    	function searchNow(){
+    		var keyword = document.getElementById("keyWord").value;
+    		var salary =  document.getElementById("salarySelect").value;
+    		var education =  document.getElementById("educationSelect").value;
+    		var href="/jobs/findJobs?keyword="+keyword+"&salary="+salary+"&education="+education;
+    		if (keyword == ""){
+    			href="/jobs/findJobs?salary="+salary+"&education="+education;
+    		}
+    		window.location.href=href;
+    	}
+    </script>
+    
+    <script th:inline="javascript">
+    	function searchBeforeTwice(){
+    		var keyword = document.getElementById("keyWord").value;
+    		var salary =  document.getElementById("salarySelect").value;
+    		var education =  document.getElementById("educationSelect").value;
+    		var href="/jobs/findJobs?keyword="+keyword+"&salary="+salary+"&education="+education;
+    		if (keyword == ""){
+    			href="/jobs/findJobs?salary="+salary+"&education="+education;
+    		}
+    		var pageNo = [[${pageNo}]];
+    		if (pageNo - 1 > 0){
+    			pageNo = pageNo - 2;
+    			href += "&pageNo=" + pageNo;
+        		window.location.href=href;
+    		}
+    	}
+    </script>
+    
+    <script th:inline="javascript">
+    	function searchBefore(){
+    		var keyword = document.getElementById("keyWord").value;
+    		var salary =  document.getElementById("salarySelect").value;
+    		var education =  document.getElementById("educationSelect").value;
+    		var href="/jobs/findJobs?keyword="+keyword+"&salary="+salary+"&education="+education;
+    		if (keyword == ""){
+    			href="/jobs/findJobs?salary="+salary+"&education="+education;
+    		}
+    		var pageNo = [[${pageNo}]];
+    		if (pageNo > 0){
+    			pageNo = pageNo - 1;
+    			href += "&pageNo=" + pageNo;
+        		window.location.href=href;
+    		}
+    	}
+    </script>
+    
+    <script th:inline="javascript">
+    	function searchNext(){
+    		var keyword = document.getElementById("keyWord").value;
+    		var salary =  document.getElementById("salarySelect").value;
+    		var education =  document.getElementById("educationSelect").value;
+    		var href="/jobs/findJobs?keyword="+keyword+"&salary="+salary+"&education="+education;
+    		if (keyword == ""){
+    			href="/jobs/findJobs?salary="+salary+"&education="+education;
+    		}
+    		var pageNo = [[${pageNo}]];
+    		var allPages = [[${allPages}]];
+    		if (pageNo + 1 < allPages){
+    			pageNo = pageNo + 1;
+    			href += "&pageNo=" + pageNo;
+        		window.location.href=href;
+    		}
+    	}
+    </script>
+    
+    <script th:inline="javascript">
+    	function searchNextTwice(){
+    		var keyword = document.getElementById("keyWord").value;
+    		var salary =  document.getElementById("salarySelect").value;
+    		var education =  document.getElementById("educationSelect").value;
+    		var href="/jobs/findJobs?keyword="+keyword+"&salary="+salary+"&education="+education;
+    		if (keyword == ""){
+    			href="/jobs/findJobs?salary="+salary+"&education="+education;
+    		}
+    		var pageNo = [[${pageNo}]];
+    		var allPages = [[${allPages}]];
+    		if (pageNo + 2 < allPages){
+    			pageNo = pageNo + 2;
+    			href += "&pageNo=" + pageNo;
+        		window.location.href=href;
+    		}
+    	}
+    </script>
+</body>
+
+</html>

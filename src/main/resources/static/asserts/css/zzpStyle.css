@@ -1,0 +1,48 @@
+.head-img{
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+}
+
+.info-div :hover{
+    background-color: #fafafa;
+}
+
+.info-div div{
+    padding-top: 25px;
+    padding-bottom: 25px;
+    border-radius: 5%;
+}
+
+.info {
+    padding-bottom: 8px;
+    padding-top: 8px;
+}
+
+.edit-href{
+    float: right;
+    margin-right: 10%;
+    display: none;
+}
+
+.searchbtn {
+    width: 50px;
+    height: 28px;
+    font-size: 16px;
+    margin-left:20px;
+    border-radius: 10%;
+    /*margin: 20px 2px;*/
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    background-color: white; 
+    color: black; 
+    border: 2px solid#9fa5df;
+}
+
+.searchbtn:hover {
+    /*margin: 20px 2px;*/
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    background-color:#9fa5df;
+    color: white;
+}

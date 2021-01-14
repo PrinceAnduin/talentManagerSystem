@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="the index page">
+<meta name="author" content="ZhangZhiPing">
+<title>Project of Class 6</title>
+<!-- Bootstrap core CSS -->
+<link href="asserts/css/bootstrap.min.css"
+	th:href="@{/webjars/bootstrap/4.5.2/css/bootstrap.css}"
+	rel="stylesheet">
+<!-- Custom styles for this template -->
+<link href="asserts/css/signin.css" th:href="@{/asserts/css/signup.css}"
+	rel="stylesheet">
+	<link href="http://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+	
+	<script src="assets/js/vendor/jquery-1.12.4.min.js" th:src="@{/asserts/js/vendor/jquery-1.12.4.min.js}"></script>
+    <script src="assets/js/bootstrap.min.js" th:src="@{/asserts/js/bootstrap.min.js/}"></script>
+	<script type="text/javascript" src="asserts/js/moment-with-locales.min.js" th:src="@{/asserts/js/moment-with-locales.min.js}"></script>
+	<script type="text/javascript" src="asserts/js/moment-timezone-with-data-2012-2022.min.js"  th:src="@{/asserts/js/moment-timezone-with-data-2012-2022.min.js}"></script>
+	<script src="asserts/js/base.js"  th:src="@{/asserts/js/base.js}"></script>
+	<script src="asserts/highlight.min.js"  th:src="@{/asserts/js/highlight.min.js}"></script>
+	<script src="asserts/theme/js/tempusdominus-bootstrap-4.js"  th:src="@{/asserts/js/tempusdominus-bootstrap-4.js}"></script>
+</head>
+
+<body class="text-center"  style="background-color: #ffffff">
+	<form th:action="@{/home/editInformation}" method="post" style="width:40%">
+		<img class="mb-4" th:src="@{/asserts/img/logo2.svg}"
+			src="asserts/img/bootstrap-solid.svg" alt="" width="216" height="216">
+		<h1 class="h3 mb-3 font-weight-normal">修改个人信息</h1>
+		<hr>
+		<!--  <p style="color: red" th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"></p> -->
+		
+
+		<div class="form-group row" style="align-items: center;">
+			<label class="col-sm-2">用户名</label>
+			<div class="col-sm-10">
+				<input name="name" type="text" class="form-control" placeholder="name" th:value="${loginUser!=null}?${loginUser.name}">
+			</div>
+		</div>
+
+		<div class="form-group  row">
+			<label class="col-sm-2">性别</label>
+			<div class="col-sm-10">
+			<div class="form-check form-check-inline">
+				<input  style="display: none" id="gender-boy" class="form-check-input" th:checked="${loginUser!=null}?${loginUser.gender==1}" type="radio" name="gender" value="1" >
+				<img id="boy-full" th:src="@{/asserts/img/choice-img/boy-full.svg}" style="display: none"
+					src="asserts/img/bootstrap-solid.svg" alt="" width="40" height="40" 
+					onclick="document.getElementById('gender-boy').checked=true;">
+				<img id="boy-empty" th:src="@{/asserts/img/choice-img/boy-empty.svg}"
+					src="asserts/img/bootstrap-solid.svg" alt="" width="40" height="40" 
+					onclick="document.getElementById('gender-boy').checked=true; document.getElementById('boy-empty').style.display='none'; document.getElementById('boy-full').style.display='block'; document.getElementById('girl-empty').style.display='block'; ; document.getElementById('girl-full').style.display='none'">
+				<label class="form-check-label">男</label>
+			</div>
+			<div class="form-check form-check-inline">
+				<input  style="display: none" id="gender-girl" class="form-check-input" th:checked="${loginUser!=null}?${loginUser.gender==0}" type="radio" name="gender" value="0">
+				<img id="girl-full" th:src="@{/asserts/img/choice-img/girl-full.svg}"
+					src="asserts/img/bootstrap-solid.svg" alt="" width="40" height="40"
+					 onclick="document.getElementById('gender-girl').checked=true">
+				<img id="girl-empty" th:src="@{/asserts/img/choice-img/girl-empty.svg}"  style="display: none"
+					src="asserts/img/bootstrap-solid.svg" alt="" width="40" height="40"
+					 onclick="document.getElementById('gender-girl').checked=true;  document.getElementById('boy-empty').style.display='block'; document.getElementById('boy-full').style.display='none'; document.getElementById('girl-empty').style.display='none'; ; document.getElementById('girl-full').style.display='block'">
+				<label class="form-check-label">女</label>
+			</div>
+			</div>
+		</div>
+		
+		<div class="form-group row" style="align-items: center;">
+			<label class="col-sm-2">电话</label>
+			<div class="col-sm-10">
+				<input type="text" class="form-control" name="phone"
+					placeholder="电话" th:value="${loginUser!=null}?${loginUser.phone}" >
+			</div>
+		</div>
+		
+		<div class="form-group row" style="align-items: center;">
+			<label class="col-sm-2">出生日期</label>
+			<div class="input-group date col-sm-10" id="datetimepicker4" data-target-input="nearest" >
+            	<input type="text" name="birth" style="margin:0" class="form-control datetimepicker-input" data-target="#datetimepicker4" th:value="${loginUser!=null}?${#dates.format(loginUser.birth, 'MM/dd/yyyy')}"/>
+                <div class="input-group-append" data-target="#datetimepicker4" data-toggle="datetimepicker">
+                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                </div>
+           	</div>
+           	<script type="text/javascript">
+                $(function () {
+                    $('#datetimepicker4').datetimepicker({
+                        format: 'L'
+                    });
+                });
+            </script>
+		</div>
+		
+		<div class="checkbox mb-3">
+			<label> </label>
+		</div>
+		<button class="btn btn-lg btn-primary btn-block" type="submit">提交</button>
+		<br>
+		<a href="/home">返回</a>
+
+		<p class="mt-5 mb-3 text-muted">© 2020-</p>
+		<a class="btn btn-sm" th:href="@{/index.html(l='zh_CN')}">中文</a>
+		<a class="btn btn-sm" th:href="@{/index.html(l='en_US')}">English</a>
+	</form>
+</body>

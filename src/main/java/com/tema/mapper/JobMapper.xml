@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tema.mapper.JobMapper" >
+    <resultMap id="BaseResultMap" type="com.tema.entities.Job" >
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="companyId" property="companyId" jdbcType="INTEGER" />
+        <result column="name" property="name" jdbcType="VARCHAR" />
+        <result column="description" property="description" jdbcType="VARCHAR"/>
+        <result column="needsNum" property="needsNum" jdbcType="INTEGER" />
+        <result column="nowNum" property="nowNum" jdbcType="INTEGER" />
+        <result column="salary" property="salary" jdbcType="INTEGER" />
+        <result column="endTime" property="endTime" jdbcType="DATE" />
+        <result column="smallAge" property="smallAge" jdbcType="INTEGER" />
+        <result column="bigAge" property="bigAge" jdbcType="INTEGER" />
+        <result column="education" property="education" jdbcType="INTEGER" />
+        <result column="startDate" property="startDate" jdbcType="DATE" />
+    </resultMap>
+    
+    <sql id="Base_Column_List" >
+        job.id, job.companyId, job.name, job.description, job.needsNum, job.nowNum, 
+        job.salary, job.endTime, job.smallAge, job.bigAge, job.education, job.startDate
+    </sql>
+    
+    <select id="getUserJob" resultMap="BaseResultMap" >
+       SELECT 
+       <include refid="Base_Column_List" />
+	   FROM job, jobRelation
+	   WHERE jobRelation.userId = #{userId} and jobRelation.jobId = job.id
+    </select>
+    
+    <select id="findJob" resultMap="BaseResultMap" >
+       SELECT 
+       <include refid="Base_Column_List" />
+	   FROM job
+	   WHERE #{jobId} = job.id
+    </select>
+    
+    <select id="findPage" resultMap="BaseResultMap"  >
+       SELECT 
+       <include refid="Base_Column_List" />
+	   FROM job 
+	   ORDER BY id
+	   limit #{pageSize} offset #{pageNo}
+    </select>
+    
+    <insert id="insert" parameterType="com.tema.entities.Job" >
+       INSERT INTO 
+       		job
+       		(companyId, name, description, needsNum, nowNum, salary, endTime, smallAge, bigAge, education, startDate) 
+       	VALUES
+       		(#{companyId}, #{name}, #{description}, #{needsNum}, #{nowNum}, #{salary}, #{endTime}, #{smallAge}, #{bigAge}, #{education}, #{startDate})
+    </insert>
+</mapper>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tema.mapper.CompanyMapper" >
+    <resultMap id="BaseResultMap" type="com.tema.entities.Company" >
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="name" property="name" jdbcType="VARCHAR" />
+        <result column="adminEmail" property="adminEmail" jdbcType="VARCHAR"/>
+        <result column="description" property="description" jdbcType="VARCHAR"/>
+    </resultMap>
+    
+    <sql id="Base_Column_List" >
+        company.id, company.name, company.adminEmail, company.description
+    </sql>
+    
+    <insert id="insert" parameterType="com.tema.entities.Company">
+    	INSERT INTO
+    	company
+    	(name, adminEmail, description)
+    	VALUES
+    	(#{name}, #{adminEmail}, #{description})
+    	<selectKey resultType="Integer" order="AFTER" keyProperty="id">
+            SELECT currval('company_id_seq')
+        </selectKey>
+    </insert>
+    
+    <select id="getJobCompany" resultMap="BaseResultMap" >
+       SELECT 
+       <include refid="Base_Column_List" />
+	   FROM company, job
+	   WHERE job.id = #{jobId} and company.id = job.companyId
+    </select>
+    
+    <select id="getCompany" resultMap="BaseResultMap" >
+       SELECT 
+       <include refid="Base_Column_List" />
+	   FROM company
+	   WHERE company.id = #{id}
+    </select>
+</mapper>

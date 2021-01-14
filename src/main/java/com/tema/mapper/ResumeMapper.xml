@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tema.mapper.ResumeMapper" >
+    <resultMap id="BaseResultMap" type="com.tema.entities.Resume" >
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="userId" property="userId" jdbcType="INTEGER" />
+        <result column="address" property="address" jdbcType="VARCHAR"/>
+        <result column="remark" property="remark" jdbcType="VARCHAR"/>
+    </resultMap>
+    
+    <sql id="Base_Column_List" >
+        id, userId, address, remark
+    </sql>
+ 	
+ 	<select id="count" resultType="Integer">
+ 		SELECT COUNT(id) FROM Resumes
+ 	</select>
+ 	
+ 	<select id="countByUserId" resultType="Integer">
+ 		SELECT COUNT(id) FROM Resumes
+ 		WHERE userId = #{userId}
+ 	</select>
+ 	
+    <select id="findPage" resultMap="BaseResultMap"  >
+       SELECT 
+       <include refid="Base_Column_List" />
+	   FROM Resumes 
+	   ORDER BY id
+	   limit #{pageSize} offset #{pageNo}
+    </select>
+ 
+    <select id="findPageByUserId" resultMap="BaseResultMap"  >
+       SELECT 
+       <include refid="Base_Column_List" />
+	   FROM Resumes 
+	   WHERE userId = #{userId}
+	   ORDER BY id
+	   limit #{pageSize} offset #{pageNo}
+    </select>
+    
+    <select id="findById" resultMap="BaseResultMap" >
+       SELECT 
+       <include refid="Base_Column_List" />
+	   FROM Resumes 
+	   WHERE id = #{id}
+    </select>
+    
+    <insert id="insert" parameterType="com.tema.entities.Resume" >
+       INSERT INTO 
+       		Resumes
+       		(userId, address, remark) 
+       	VALUES
+       		(#{userId}, #{address}, #{remark})
+    </insert>
+    
+    <update id="update" parameterType="com.tema.entities.Resume" >
+       UPDATE 
+       		Resumes
+       SET 
+       		address = #{address},
+       		remark = #{remark}
+       WHERE 
+       		id = #{id}
+    </update>
+</mapper>

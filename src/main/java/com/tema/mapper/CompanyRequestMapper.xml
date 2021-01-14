@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tema.mapper.CompanyRequestMapper" >
+    <resultMap id="BaseResultMap" type="com.tema.entities.CompanyRequest" >
+    	<id column="id" property="id" jdbcType="INTEGER" />
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="description" property="description" jdbcType="VARCHAR"/>
+        <association property="user" javaType="com.tema.entities.User">
+        	<id column="adminId" property="id" />
+        	<result column="user_name" property="name" jdbcType="VARCHAR" />
+        	<result column="user_phone" property="phone" jdbcType="VARCHAR"/>
+        	<result column="user_gender" property="gender" jdbcType="SMALLINT"/>
+        	<result column="user_birth" property="birth" jdbcType="DATE"/>
+        	<result column="user_email" property="email" jdbcType="VARCHAR" />
+        </association>
+    </resultMap>
+    
+    <sql id="Base_Column_List" >
+        companyRequest.id, companyRequest.adminId, companyRequest.name, companyRequest.description, 
+        users.name as user_name, users.phone as user_phone, users.gender as user_gender, users.birth as user_birth, users.email as user_email
+    </sql>
+    
+    <insert id="insert" parameterType="com.tema.entities.CompanyRequest" >
+       INSERT INTO 
+       		companyRequest
+       		(adminId, name, description, delete) 
+       	VALUES
+       		(#{user.id}, #{name}, #{description}, false)
+    </insert>
+    
+    <update id="gotRequest">
+    	UPDATE 
+    	companyRequest
+    	SET
+    	delete = true
+    	where
+    	id = #{id}
+    </update>
+    
+   <select id="findPage" resultMap="BaseResultMap" >
+       SELECT 
+       <include refid="Base_Column_List" />
+	   FROM companyRequest, users
+	   WHERE companyRequest.adminId = users.id and companyRequest.delete = false
+	   ORDER BY companyRequest.id
+	   limit #{pageSize} offset #{pageNo}
+    </select>
+    
+    <select id="findOne" resultMap="BaseResultMap" >
+       SELECT 
+       <include refid="Base_Column_List" />
+	   FROM companyRequest, users
+	   WHERE companyRequest.id = #{id} and adminId = users.id
+    </select>
+</mapper>

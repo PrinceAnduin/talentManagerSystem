@@ -1,0 +1,227 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta http-equiv="Content-Type" content="multipart/form-data; charset=UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta name="description" content="">
+		<meta name="author" content="">
+
+		<title>DG HOME</title>
+		<!-- Bootstrap core CSS -->
+		<link href="asserts/css/bootstrap.min.css" th:href="@{/asserts/css/bootstrap.min.css}" rel="stylesheet">
+
+			<link href="http://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="assets/css/LineIcons.css" th:href="@{/asserts/css/LineIcons.css}">
+
+    <link rel="stylesheet" href="assets/css/magnific-popup.css" th:href="@{/asserts/css/magnific-popup.css}">
+
+    <link rel="stylesheet" href="assets/css/slick.css" th:href="@{/asserts/css/slick.css}">
+
+    <link rel="stylesheet" href="assets/css/animate.css" th:href="@{/asserts/css/animate.css}">
+
+    <link rel="stylesheet" href="assets/css/default.css" th:href="@{/asserts/css/default.css}">
+    <link rel="stylesheet" href="assets/css/style.css" th:href="@{/asserts/css/style.css}">
+    <link rel="stylesheet" href="assets/css/style.css" th:href="@{/asserts/css/zzpStyle.css}">
+    
+	<script src="assets/js/vendor/jquery-1.12.4.min.js" th:src="@{/asserts/js/vendor/jquery-1.12.4.min.js}"></script>
+    <script src="assets/js/bootstrap.min.js" th:src="@{/asserts/js/bootstrap.min.js/}"></script>
+	<script type="text/javascript" src="asserts/js/moment-with-locales.min.js" th:src="@{/asserts/js/moment-with-locales.min.js}"></script>
+	<script type="text/javascript" src="asserts/js/moment-timezone-with-data-2012-2022.min.js"  th:src="@{/asserts/js/moment-timezone-with-data-2012-2022.min.js}"></script>
+	<script src="asserts/js/base.js"  th:src="@{/asserts/js/base.js}"></script>
+	<script src="asserts/highlight.min.js"  th:src="@{/asserts/js/highlight.min.js}"></script>
+	<script src="asserts/theme/js/tempusdominus-bootstrap-4.js"  th:src="@{/asserts/js/tempusdominus-bootstrap-4.js}"></script>
+	</head>
+
+	<body>
+		
+		
+    <div class="preloader">
+        <div class="loader">
+            <div class="ytp-spinner">
+                <div class="ytp-spinner-container">
+                    <div class="ytp-spinner-rotator">
+                        <div class="ytp-spinner-left">
+                            <div class="ytp-spinner-circle"></div>
+                        </div>
+                        <div class="ytp-spinner-right">
+                            <div class="ytp-spinner-circle"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <section class="header-area">
+        <div class="navbar-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <nav class="navbar navbar-expand-lg">
+                            <a class="navbar-brand" href="#">
+                                <img th:src="@{/asserts/img/logo-bar.svg}" alt="Logo" width="80px">
+                            </a>
+                            <button class="navbar-toggler" type="button" data-toggle="collapse"
+                                data-target="#navbarEight" aria-controls="navbarEight" aria-expanded="false"
+                                aria-label="Toggle navigation">
+                                <span class="toggler-icon"></span>
+                                <span class="toggler-icon"></span>
+                                <span class="toggler-icon"></span>
+                            </button>
+                            <div class="collapse navbar-collapse sub-menu-bar" id="navbarEight">
+                                <ul class="navbar-nav ml-auto">
+                                    <li class="nav-item">
+                                        <a href="/home/logout">首页</a>
+                                    </li>
+                                    <li class="nav-item active">
+                                        <a href="#about">我的</a>
+                                    </li>
+                                    <li th:if="${loginUser.isHR}" class="nav-item">
+                                        <a href="/recruit">招聘</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="/manager/checkCompanies">审核企业</a>
+                                    </li>
+                                    <li class="nav-item" th:if="${loginUser.company != null}">
+                                        <a href="/jobs">我的公司</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="navbar-btn d-none mt-15 d-lg-inline-block">
+                                <a class="menu-bar" href="#side-menu-right"><i class="lni-menu"></i></a>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <div class="sidebar-right">
+        <div class="sidebar-close">
+            <a class="close" href="#close"><i class="lni-close"></i></a>
+        </div>
+        <div class="sidebar-content">
+            <div class="sidebar-logo text-center">
+                <a href="#"><img src="assets/images/logo.png" th:src="@{/asserts/img/logo-bar.svg}" alt="Logo"></a>
+            </div>
+            <div class="sidebar-menu">
+                <ul>
+                    <li><a class="page-scroll" href="#home">首页</a></li>
+                    <li><a class="page-scroll" href="#about">产品</a></li>
+                    <li><a class="page-scroll" href="#portfolio">团队</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="overlay-right"></div>
+
+
+    <section id="about" class="about-area">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xl-6 col-lg-8">
+                    <div style="margin-top:5%" class="about-image text-center wow fadeInUp" data-wow-duration="1.5s" data-wow-offset="100">
+                        <img class="head-img" src="assets/images/services.png" th:src="@{/asserts/img/logo-bar.svg}" alt="services">
+                    </div>
+                    <div class="section-title text-center mt-30 pb-40">
+                        <h4 class="title wow fadeInUp" data-wow-duration="1.5s" data-wow-delay="0.6s">[[${loginUser.name}]]</h4>
+                        <hr>
+                        <div class="info-div" onmouseover="document.getElementById('style-href').style.display='block'" onmouseout="document.getElementById('style-href').style.display='none'">
+                            
+                            <div>
+                                <p class="text wow fadeInUp" data-wow-duration="1.5s" data-wow-delay="1s">团结，精确，完美</p>
+                        
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="info-div" onmouseover="document.getElementById('edit-href').style.display='block'" onmouseout="document.getElementById('edit-href').style.display='none'">
+                        <div>
+                            <a id="edit-href" class="edit-href searchbtn" href="#">编辑</a>
+                            <br>
+                            <h5 class="info">
+                                <svg xmlns="http://www.w3.org/2000/svg" style="margin-top: -2px;" width="16" height="16" fill="currentColor" class="bi bi-person-lines-fill" viewBox="0 0 16 16">
+                                    <path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-5 6s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zM11 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5zm.5 2.5a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1h-4zm2 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1h-2zm0 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1h-2z"/>
+                                  </svg> 基本信息</h5>
+                            <p class="info">性别：[[${loginUser.gender == 0 ? '女':'男'}]]</p>
+                            <p class="info">年龄：[[${#dates.year(new java.util.Date()) - #dates.year(loginUser.birth)}]]</p>
+                            <p class="info">生日：[[${#dates.format(loginUser.birth, 'MM月dd日')}]]</p>
+                            <p class="info">联系电话：[[${loginUser.phone}]]</p>
+                        </div>
+                        </div>
+                        <hr>
+                        <div class="info-div" onmouseover="document.getElementById('email-href').style.display='block'" onmouseout="document.getElementById('email-href').style.display='none'">
+                            <div>
+                                <a id="email-href" class="edit-href searchbtn" href="#">修改</a>
+                                <br>
+                                <h5 class="info">
+                                    <svg xmlns="http://www.w3.org/2000/svg" style="margin-top: -2px;" width="16" height="16" fill="currentColor" class="bi bi-envelope-open" viewBox="0 0 16 16">
+                                        <path d="M8.47 1.318a1 1 0 0 0-.94 0l-6 3.2A1 1 0 0 0 1 5.4v.818l5.724 3.465L8 8.917l1.276.766L15 6.218V5.4a1 1 0 0 0-.53-.882l-6-3.2zM15 7.388l-4.754 2.877L15 13.117v-5.73zm-.035 6.874L8 10.083l-6.965 4.18A1 1 0 0 0 2 15h12a1 1 0 0 0 .965-.738zM1 13.117l4.754-2.852L1 7.387v5.73zM7.059.435a2 2 0 0 1 1.882 0l6 3.2A2 2 0 0 1 16 5.4V14a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V5.4a2 2 0 0 1 1.059-1.765l6-3.2z"/>
+                                      </svg> 绑定邮箱</h5>
+                                <p class="info">[[${loginUser.email}]]</p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="info-div" onmouseover="document.getElementById('resume-href').style.display='block'" onmouseout="document.getElementById('resume-href').style.display='none'">
+                            <div>
+                                <a id="resume-href" class="edit-href searchbtn" href="#">详情</a>
+                                <br>
+                                <h5 class="info">
+                                    <svg xmlns="http://www.w3.org/2000/svg" style="margin-top: -2px;" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-person" viewBox="0 0 16 16">
+                                        <path d="M11 8a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                                        <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2v9.255S12 12 8 12s-5 1.755-5 1.755V2a1 1 0 0 1 1-1h5.5v2z"/>
+                                      </svg> 我的简历</h5>
+                                <ul>
+                                    <li style="margin-top:10px; margin-bottom: 10px" th:each="resume:${resumes}">简历[[${resumeStat.index} + 1]] <a class="searchbtn" th:href="${resume.address}">查看</a></li>
+                               
+                                </ul>
+                            </div>
+                        </div>
+
+                        <hr>
+                        <div class="info-div" onmouseover="document.getElementById('apply-href').style.display='block'" onmouseout="document.getElementById('apply-href').style.display='none'">
+                            <div>
+                                <a id="apply-href" class="edit-href searchbtn" href="#">详情</a>
+                                <br>
+                                <h5 class="info">
+                                    <svg xmlns="http://www.w3.org/2000/svg" style="margin-top: -2px;" width="16" height="16" fill="currentColor" class="bi bi-symmetry-horizontal" viewBox="0 0 16 16">
+                                        <path d="M13.5 7a.5.5 0 0 0 .24-.939l-11-6A.5.5 0 0 0 2 .5v6a.5.5 0 0 0 .5.5h11zm.485 2.376a.5.5 0 0 1-.246.563l-11 6A.5.5 0 0 1 2 15.5v-6a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 .485.376zM11.539 10H3v4.658L11.54 10z"/>
+                                      </svg> 我的申请</h5>
+                                <ul>
+                                    <li style="margin-top:10px; margin-bottom: 10px" th:each="request:${requests}">应聘职位: [[${request.job.name}]]<a class="searchbtn" href="#">查看</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+    </section>
+		<script src="assets/js/vendor/modernizr-3.6.0.min.js" th:src="@{/asserts/js/vendor/modernizr-3.6.0.min.js}"></script>
+    <script src="assets/js/vendor/jquery-1.12.4.min.js" th:src="@{/asserts/js/vendor/jquery-1.12.4.min.js}"></script>
+
+    <script src="assets/js/bootstrap.min.js" th:src="@{/asserts/js/bootstrap.min.js/}"></script>
+    <script src="assets/js/popper.min.js" th:src="@{/asserts/js/popper.min.js}"></script>
+
+    <script src="assets/js/slick.min.js" th:src="@{/asserts/js/slick.min.js}"></script>
+
+    <script src="assets/js/isotope.pkgd.min.js" th:src="@{/asserts/js/isotope.pkgd.min.js}"></script>
+
+    <script src="assets/js/imagesloaded.pkgd.min.js" th:src="@{/asserts/js/imagesloaded.pkgd.min.js}"></script>
+
+    <script src="assets/js/jquery.magnific-popup.min.js" th:src="@{/asserts/js/jquery.magnific-popup.min.js}"></script>
+
+    <script src="assets/js/scrolling-nav.js" th:src="@{/asserts/js/scrolling-nav.js}"></script>
+    <script src="assets/js/jquery.easing.min.js" th:src="@{/asserts/js/jquery.easing.min.js}"></script>
+
+    <script src="assets/js/ajax-contact.js" th:src="@{/asserts/js/ajax-contact.js}"></script>
+
+    <script src="assets/js/wow.min.js" th:src="@{/asserts/js/wow.min.js}"></script>
+
+    <script src="assets/js/main.js" th:src="@{/asserts/js/main.js}"></script>
+	</body>
+
+</html>
