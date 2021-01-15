@@ -8,63 +8,62 @@ import java.util.Map;
 import java.util.Set;
 
 public class getKeyWords {//加载字典中的所有词汇
-    @SuppressWarnings("unchecked")
-	static Set<String> dic  = new HashSet(){{
-        //省级字典
-        add("北京");add("广东");add("山东");add("江苏");add("河南");add("上海");add("河北");add("浙江");add("香港");add("陕西");
-        add("湖南");add("重庆");add("福建");add("天津");add("云南");add("四川"); add("广西");add("安徽");add("海南");add("江西");
-        add("湖北");add("山西");add("辽宁");add("台湾");add("黑龙江");add("内蒙古");add("澳门");add("贵州");add("甘肃");add("青海");
-        add("新疆");add("西藏");add("吉林");add("宁夏");
-        //市级字典
-        add("北京");add("东莞");add("广州");add("中山");add("深圳");add("惠州");add("江门");add("珠海");add("汕头");add("梅州");
-        add("佛山");add("湛江");add("河源");add("肇庆");add("潮州");add("清远");add("韶关");add("揭阳");add("阳江");add("云浮");
-        add("茂名");add("济南");add("青岛");add("临沂");add("济宁");add("菏泽");add("烟台");add("泰安");add("淄博");add("潍坊");
-        add("日照");add("威海");add("滨州");add("东营");add("聊城");add("德州");add("莱芜");add("枣庄");add("苏州");add("徐州");
-        add("盐城");add("无锡");add("南京");add("南通");add("连云港");add("常州");add("扬州");add("镇江");add("淮安");add("泰州");
-        add("宿迁");add("上海");add("郑州");add("南阳");add("新乡");add("安阳");add("洛阳");add("信阳");add("平顶山");add("周口");
-        add("商丘");add("开封");add("焦作");add("驻马店");add("濮阳");add("三门峡");add("漯河");add("许昌");add("鹤壁");add("济源");
-        add("石家庄");add("唐山");add("承德");add("邯郸");add("邢台");add("沧州");add("秦皇岛");add("张家口");add("衡水");add("廊坊");
-        add("保定");add("温州");add("宁波");add("杭州");add("台州");add("嘉兴");add("金华");add("湖州");add("绍兴");add("舟山");
-        add("丽水");add("衢州");add("西安");add("咸阳");add("宝鸡");add("汉中");add("渭南");add("安康");add("榆林");add("商洛");
-        add("延安");add("铜川");add("长沙");add("邵阳");add("常德");add("衡阳");add("株洲");add("湘潭");add("永州");add("岳阳");
-        add("怀化");add("郴州");add("娄底");add("益阳");add("张家界");add("湘西");add("重庆");add("漳州");add("泉州");add("厦门");
-        add("福州");add("莆田");add("宁德");add("三明");add("南平");add("龙岩");add("天津");add("昆明");add("曲靖");add("昭通");
-        add("保山");add("玉溪");add("丽江");add("西双版纳");add("成都");add("绵阳");add("广元");add("达州");add("南充");add("德阳");
-        add("广安");;add("巴中");add("遂宁");add("内江");add("凉山州");add("攀枝花");add("乐山");add("自贡");add("泸州");add("贵港");
-        add("玉林");add("北海");add("南宁");add("眉山");add("资阳");add("宜宾");add("雅安");add("柳州");add("桂林");add("梧州");
-        add("钦州");add("来宾");add("河池");add("百色");add("贺州");add("崇左");add("防城港");add("芜湖");add("合肥");add("六安");
-        add("宿州");add("阜阳");add("安庆");add("马鞍山");add("蚌埠");add("宣城");add("黄山");add("铜陵");add("亳州");add("池州");
-        add("三亚");add("海口");add("琼海");add("文昌");add("东方");add("昌江");add("陵水");add("南昌");add("赣州");add("上饶");
-        add("吉安");add("九江");add("新余");add("抚州");add("武汉");add("宜昌");add("荆州");add("孝感");add("黄冈");add("十堰");
-        add("黄石");add("荆门");add("天门");add("太原");add("大同");add("焦作");add("运城");add("长治");add("晋城");add("大连");
-        add("沈阳");add("丹东");add("辽阳");add("葫芦岛");add("鞍山");add("锦州");add("抚顺");add("台北");add("高雄");add("台中");
-        add("新竹");add("齐齐哈尔");add("哈尔滨");add("大庆");  add("双鸭山");add("牡丹江");add("黑河");add("鸡西");add("佳木斯");
-        add("赤峰");add("包头");add("通辽");add("呼和浩特");add("梅州");add("鄂尔多斯");add("呼伦贝尔");add("贵阳");add("六盘水");
-        add("安顺");add("清远");add("遵义");add("兰州");add("天水");add("庆阳");add("酒泉");add("张掖");add("白银");add("武威");
-        add("拉萨");add("乌鲁木齐");add("石河子");add("克拉玛依");add("和田");add("吐鲁番");add("吉林");add("长春");add("白山");
-        add("白城");add("松原");add("银川");add("吴忠");add("中卫");add("石嘴山");add("香港");add("澳门");
-        //行业字典
-        add("金融");  add("互联网");add("农业"); add("林业");add("娱乐业"); add("采矿业");add("制造业");  add("服装业");add("食品制造业");
-        add("纺织业");add("家具制造业");  add("医疗行业");add("汽车行业");  add("铁路行业");add("物流行业");  add("建筑业");add("电力行业");
-        add("批发业");add("零售业");  add("航空业");add("餐饮业");
-        //职位字典
-        add("程序员");add("产品经理");add("产品总监");add("UI设计师");add("交互设计师");add("新媒体运营");add("产品运营");add("网络推广");
-        add("市场营销");add("市场推广");add("采购主管");add("品牌推广");add("策划经理");add("行政主管");add("CEO");add("物业经理");
-        add("药剂师");add("营养师");add("物流专员");add("服务员");add("发型师");add("生产总监");add("生产员");
-        //程序员字典
-        add("项目经理");add("软件工程师");add("嵌入式软件工程师");add("java开发工程师");add("软件开发工程师");add("android");
-        add("嵌入式软件开发工程师");add("软件测试工程师");add("高级软件工程师");add("测试工程师");add("产品经理");
-        add(".net");add("java");add("高级项目经理");add("技术支持工程师");
-        add("ios");add("C++");add("高级java开发工程师");add("实施工程师");add("软件实施工程师");add("前端开发工程师");add("项目助理");
-        add("web前端开发工程师");add("java软件开发工程师");add("软件项目经理");add("施工员");add("软件开发");add("硬件工程师");add("嵌入式开发工程师");
-        add("技术总监");add("售前工程师");add("嵌入式软件开发");
-       add("高级软件开发工程师");add("c#");
-        add("前端");add("后端");add("数据库");add("测试");add("HR");add("市场管理");add("游戏开发");add("H5");add("CSS");add("javaScript");add("javascript");
-    }};
+	static Set<String> dic  = new HashSet<String>();
     /*
         匹配句子中词典中存在的所有词汇
      */
     public static List<String> getAllWordsMatched(String sentence){
+    	if (dic.size() == 0) {
+    		dic.add("北京");dic.add("广东");dic.add("山东");dic.add("江苏");dic.add("河南");dic.add("上海");dic.add("河北");dic.add("浙江");dic.add("香港");dic.add("陕西");
+          dic.add("湖南");dic.add("重庆");dic.add("福建");dic.add("天津");dic.add("云南");dic.add("四川"); dic.add("广西");dic.add("安徽");dic.add("海南");dic.add("江西");
+          dic.add("湖北");dic.add("山西");dic.add("辽宁");dic.add("台湾");dic.add("黑龙江");dic.add("内蒙古");dic.add("澳门");dic.add("贵州");dic.add("甘肃");dic.add("青海");
+          dic.add("新疆");dic.add("西藏");dic.add("吉林");dic.add("宁夏");
+            //市级字典
+          dic.add("北京");dic.add("东莞");dic.add("广州");dic.add("中山");dic.add("深圳");dic.add("惠州");dic.add("江门");dic.add("珠海");dic.add("汕头");dic.add("梅州");
+          dic.add("佛山");dic.add("湛江");dic.add("河源");dic.add("肇庆");dic.add("潮州");dic.add("清远");dic.add("韶关");dic.add("揭阳");dic.add("阳江");dic.add("云浮");
+          dic.add("茂名");dic.add("济南");dic.add("青岛");dic.add("临沂");dic.add("济宁");dic.add("菏泽");dic.add("烟台");dic.add("泰安");dic.add("淄博");dic.add("潍坊");
+          dic.add("日照");dic.add("威海");dic.add("滨州");dic.add("东营");dic.add("聊城");dic.add("德州");dic.add("莱芜");dic.add("枣庄");dic.add("苏州");dic.add("徐州");
+          dic.add("盐城");dic.add("无锡");dic.add("南京");dic.add("南通");dic.add("连云港");dic.add("常州");dic.add("扬州");dic.add("镇江");dic.add("淮安");dic.add("泰州");
+          dic.add("宿迁");dic.add("上海");dic.add("郑州");dic.add("南阳");dic.add("新乡");dic.add("安阳");dic.add("洛阳");dic.add("信阳");dic.add("平顶山");dic.add("周口");
+          dic.add("商丘");dic.add("开封");dic.add("焦作");dic.add("驻马店");dic.add("濮阳");dic.add("三门峡");dic.add("漯河");dic.add("许昌");dic.add("鹤壁");dic.add("济源");
+          dic.add("石家庄");dic.add("唐山");dic.add("承德");dic.add("邯郸");dic.add("邢台");dic.add("沧州");dic.add("秦皇岛");dic.add("张家口");dic.add("衡水");dic.add("廊坊");
+          dic.add("保定");dic.add("温州");dic.add("宁波");dic.add("杭州");dic.add("台州");dic.add("嘉兴");dic.add("金华");dic.add("湖州");dic.add("绍兴");dic.add("舟山");
+          dic.add("丽水");dic.add("衢州");dic.add("西安");dic.add("咸阳");dic.add("宝鸡");dic.add("汉中");dic.add("渭南");dic.add("安康");dic.add("榆林");dic.add("商洛");
+          dic.add("延安");dic.add("铜川");dic.add("长沙");dic.add("邵阳");dic.add("常德");dic.add("衡阳");dic.add("株洲");dic.add("湘潭");dic.add("永州");dic.add("岳阳");
+          dic.add("怀化");dic.add("郴州");dic.add("娄底");dic.add("益阳");dic.add("张家界");dic.add("湘西");dic.add("重庆");dic.add("漳州");dic.add("泉州");dic.add("厦门");
+          dic.add("福州");dic.add("莆田");dic.add("宁德");dic.add("三明");dic.add("南平");dic.add("龙岩");dic.add("天津");dic.add("昆明");dic.add("曲靖");dic.add("昭通");
+          dic.add("保山");dic.add("玉溪");dic.add("丽江");dic.add("西双版纳");dic.add("成都");dic.add("绵阳");dic.add("广元");dic.add("达州");dic.add("南充");dic.add("德阳");
+          dic.add("广安");;dic.add("巴中");dic.add("遂宁");dic.add("内江");dic.add("凉山州");dic.add("攀枝花");dic.add("乐山");dic.add("自贡");dic.add("泸州");dic.add("贵港");
+          dic.add("玉林");dic.add("北海");dic.add("南宁");dic.add("眉山");dic.add("资阳");dic.add("宜宾");dic.add("雅安");dic.add("柳州");dic.add("桂林");dic.add("梧州");
+          dic.add("钦州");dic.add("来宾");dic.add("河池");dic.add("百色");dic.add("贺州");dic.add("崇左");dic.add("防城港");dic.add("芜湖");dic.add("合肥");dic.add("六安");
+          dic.add("宿州");dic.add("阜阳");dic.add("安庆");dic.add("马鞍山");dic.add("蚌埠");dic.add("宣城");dic.add("黄山");dic.add("铜陵");dic.add("亳州");dic.add("池州");
+          dic.add("三亚");dic.add("海口");dic.add("琼海");dic.add("文昌");dic.add("东方");dic.add("昌江");dic.add("陵水");dic.add("南昌");dic.add("赣州");dic.add("上饶");
+          dic.add("吉安");dic.add("九江");dic.add("新余");dic.add("抚州");dic.add("武汉");dic.add("宜昌");dic.add("荆州");dic.add("孝感");dic.add("黄冈");dic.add("十堰");
+          dic.add("黄石");dic.add("荆门");dic.add("天门");dic.add("太原");dic.add("大同");dic.add("焦作");dic.add("运城");dic.add("长治");dic.add("晋城");dic.add("大连");
+          dic.add("沈阳");dic.add("丹东");dic.add("辽阳");dic.add("葫芦岛");dic.add("鞍山");dic.add("锦州");dic.add("抚顺");dic.add("台北");dic.add("高雄");dic.add("台中");
+          dic.add("新竹");dic.add("齐齐哈尔");dic.add("哈尔滨");dic.add("大庆");dic.add("双鸭山");dic.add("牡丹江");dic.add("黑河");dic.add("鸡西");dic.add("佳木斯");
+          dic.add("赤峰");dic.add("包头");dic.add("通辽");dic.add("呼和浩特");dic.add("梅州");dic.add("鄂尔多斯");dic.add("呼伦贝尔");dic.add("贵阳");dic.add("六盘水");
+          dic.add("安顺");dic.add("清远");dic.add("遵义");dic.add("兰州");dic.add("天水");dic.add("庆阳");dic.add("酒泉");dic.add("张掖");dic.add("白银");dic.add("武威");
+          dic.add("拉萨");dic.add("乌鲁木齐");dic.add("石河子");dic.add("克拉玛依");dic.add("和田");dic.add("吐鲁番");dic.add("吉林");dic.add("长春");dic.add("白山");
+          dic.add("白城");dic.add("松原");dic.add("银川");dic.add("吴忠");dic.add("中卫");dic.add("石嘴山");dic.add("香港");dic.add("澳门");
+            //行业字典
+          dic.add("金融");dic.add("互联网");dic.add("农业"); dic.add("林业");dic.add("娱乐业"); dic.add("采矿业");dic.add("制造业");dic.add("服装业");dic.add("食品制造业");
+          dic.add("纺织业");dic.add("家具制造业");dic.add("医疗行业");dic.add("汽车行业");dic.add("铁路行业");dic.add("物流行业");dic.add("建筑业");dic.add("电力行业");
+          dic.add("批发业");dic.add("零售业");dic.add("航空业");dic.add("餐饮业");
+            //职位字典
+          dic.add("程序员");dic.add("产品经理");dic.add("产品总监");dic.add("UI设计师");dic.add("交互设计师");dic.add("新媒体运营");dic.add("产品运营");dic.add("网络推广");
+          dic.add("市场营销");dic.add("市场推广");dic.add("采购主管");dic.add("品牌推广");dic.add("策划经理");dic.add("行政主管");dic.add("CEO");dic.add("物业经理");
+          dic.add("药剂师");dic.add("营养师");dic.add("物流专员");dic.add("服务员");dic.add("发型师");dic.add("生产总监");dic.add("生产员");
+            //程序员字典
+          dic.add("项目经理");dic.add("软件工程师");dic.add("嵌入式软件工程师");dic.add("java开发工程师");dic.add("软件开发工程师");dic.add("android");
+          dic.add("嵌入式软件开发工程师");dic.add("软件测试工程师");dic.add("高级软件工程师");dic.add("测试工程师");dic.add("产品经理");
+          dic.add(".net");dic.add("java");dic.add("高级项目经理");dic.add("技术支持工程师");
+          dic.add("ios");dic.add("C++");dic.add("高级java开发工程师");dic.add("实施工程师");dic.add("软件实施工程师");dic.add("前端开发工程师");dic.add("项目助理");
+          dic.add("web前端开发工程师");dic.add("java软件开发工程师");dic.add("软件项目经理");dic.add("施工员");dic.add("软件开发");dic.add("硬件工程师");dic.add("嵌入式开发工程师");
+          dic.add("技术总监");dic.add("售前工程师");dic.add("嵌入式软件开发");
+         dic.add("高级软件开发工程师");dic.add("c#");
+          dic.add("前端");dic.add("后端");dic.add("数据库");dic.add("测试");dic.add("HR");dic.add("市场管理");dic.add("游戏开发");dic.add("H5");dic.add("CSS");dic.add("javaScript");dic.add("javascript");
+    	}
         List<String> wordList = new ArrayList<>();
         for(int index = 0;index < sentence.length();index++){
             for(int offset = index+1; offset <= sentence.length();offset++){
