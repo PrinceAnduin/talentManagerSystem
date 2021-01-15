@@ -14,6 +14,8 @@ import org.apache.solr.client.solrj.SolrQuery;
 import org.apache.solr.client.solrj.response.QueryResponse;
 import org.apache.solr.common.SolrDocument;
 import org.apache.solr.common.SolrDocumentList;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,6 +24,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.tema.config.SolrImportDataFromPostgresqlSchedule;
 import com.tema.entities.Job;
 import com.tema.entities.JobRequest;
 import com.tema.entities.Resume;
@@ -48,6 +51,8 @@ public class JobsController {
 	JobRequestMapper jobRequestMapper;
 	@Autowired
 	SolrClient solrClient;
+	
+	private static final Logger LOGGER = LoggerFactory.getLogger(SolrImportDataFromPostgresqlSchedule.class);
 	
 	User user = null;
 	Job job = null;
@@ -116,7 +121,7 @@ public class JobsController {
 	            model.addAttribute("jobs", jobList);
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			LOGGER.info(e.getMessage());
 		}
 		return "findJobs";
 	}
@@ -216,7 +221,7 @@ public class JobsController {
 	            model.addAttribute("jobs", jobList);
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			LOGGER.info(e.getMessage());
 		}
 		return "findJobs";
 	}

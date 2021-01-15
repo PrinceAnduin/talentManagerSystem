@@ -39,22 +39,22 @@ public class SolrImportDataFromPostgresqlSchedule {
             String result = EntityUtils.toString(entity);
             LOGGER.info(result);
         } catch (ClientProtocolException ex) {
-            ex.printStackTrace();
+        	LOGGER.info(ex.getMessage());
         } catch (IOException ex) {
-            ex.printStackTrace();
+        	LOGGER.info(ex.getMessage());
         } finally {
             if (response != null) {
                 try {
                     response.close();
                 } catch (IOException ex) {
-                    ex.printStackTrace();
+                	LOGGER.info(ex.getMessage());
                 }
             }
             if (client != null) {
                 try {
                     client.close();
                 } catch (IOException ex) {
-                    ex.printStackTrace();
+                	LOGGER.info(ex.getMessage());
                 }
             }
         }

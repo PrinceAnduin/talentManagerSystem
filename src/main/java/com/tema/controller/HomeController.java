@@ -19,6 +19,8 @@ import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -32,6 +34,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.sun.mail.util.MailSSLSocketFactory;
+import com.tema.config.SolrImportDataFromPostgresqlSchedule;
 import com.tema.entities.JobRequest;
 import com.tema.entities.Resume;
 import com.tema.entities.User;
@@ -56,6 +59,8 @@ public class HomeController {
 	JobMapper jobMapper;
 	@Autowired
 	JobRequestMapper jobRequestMapper;
+	
+	private static final Logger LOGGER = LoggerFactory.getLogger(SolrImportDataFromPostgresqlSchedule.class);
 	
 	List<JobRequest> requests;
 	
@@ -199,13 +204,15 @@ public class HomeController {
 		    try{
 		        if (!tempFile.getParentFile().exists()){
 		            tempFile.getParentFile().mkdirs();//创建父级文件路径
-		            tempFile.createNewFile();//创建文件
+		            if (!tempFile.createNewFile()) {
+		            	LOGGER.info("file create failed");
+		            }
 		        }
 		        //通过CommonsMultipartFile的方法直接写文件（注意这个时候）
 		        file.transferTo(tempFile);
 		        System.out.println("1");
 		    }catch (IOException e){
-		        e.printStackTrace();
+		        LOGGER.info(e.getMessage());
 		    }
 		    Resume resume = new Resume(0, user.getId(), path, "暂无");
 		    resumeMapper.insert(resume);
